@@ -21,18 +21,25 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['role:administrador']], function () {
-    Route::resource("categorias", 'CategoryController');
 
-    Route::post('categoryStore',"CategoryController@store");
-    Route::post('categoryEdit',"CategoryController@edit");
-    Route::post('categoryUpdate',"CategoryController@update");
-    Route::post('categoryDestroy',"CategoryController@destroy");
-
-
-    Route::resource("productos", 'ProductController');
-
-    Route::post('productStore',"ProductController@store");
-    Route::post('productEdit',"ProductController@edit");
-    Route::post('productUpdate',"ProductController@update");
-    Route::post('productDestroy',"ProductController@destroy");
 });
+Route::resource("categorias", 'CategoryController');
+
+Route::post('categoryStore',"CategoryController@store");
+Route::post('categoryEdit',"CategoryController@edit");
+Route::post('categoryUpdate',"CategoryController@update");
+Route::post('categoryDestroy',"CategoryController@destroy");
+
+
+Route::resource("productos", 'ProductController');
+
+Route::post('productStore',"ProductController@store");
+Route::post('productEdit',"ProductController@edit");
+Route::post('productUpdate',"ProductController@update");
+Route::post('productDestroy',"ProductController@destroy");
+
+
+
+Route::post('category_productDestroy',"ProductController@category_productDestroy");
+Route::post('category_productStore',"ProductController@category_productStore");
+Route::post('category_productEdit',"ProductController@category_productEdit");

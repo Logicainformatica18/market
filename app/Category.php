@@ -9,8 +9,8 @@ class Category extends Model
        //
        protected $fillable = ['id', 'description'];
 
-       public function product()
+       public function products()
        {
-           return $this->hasMany('App\Product',"category_id");
+           return $this->belongsToMany('App\Category','category_products','category_id','product_id')->withTimestamps(); //pertenece a muchas categorias
        }
 }

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['id', 'description','category_id'];
+    protected $fillable = ['id', 'description'];
 
-    public function category()
+    public function categorys()
     {
-        return $this->belongsTo('App\Category');
+        //pertenece a muchas categorias - agregamos el id de la tabla asociativa - pivot
+        return $this->belongsToMany('App\Category', 'category_products')->withPivot('category_id', 'id');;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\category_product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,7 +18,7 @@ class ProductController extends Controller
     {
         $product = Product::paginate(6);
         $category = Category::all();
-        return view("product", compact("product","category"));
+        return view("product", compact("product", "category"));
     }
 
     /**
@@ -40,11 +41,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product;
-
         $product->description = $request->description;
-        $product->category_id = $request->category_id;
         $product->save();
-     return $this->create();
+        return $this->create();
     }
 
     /**
@@ -84,6 +83,9 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->category_id = $request->category_id;
         $product->save();
+
+
+
         return $this->create();
     }
 
@@ -97,5 +99,26 @@ class ProductController extends Controller
     {
         Product::find($request->id)->delete();
         return $this->create();
+    }
+    public function category_productStore(Request $request){
+        $category_product = new category_product();
+        $category_product->category_id = $request->category_id;
+        $category_product->product_id = $request->product_id;
+        $category_product->save();
+        $this->create();
+       return  $this->category_productTable($request->product_id);
+    }
+    public function category_productDestroy(Request $request){
+        category_product::find($request->id)->delete();
+      return  $this->category_productTable($request->product_id);
+
+    }
+    public function category_productTable($product_id){
+        $product = Product::find($product_id);
+       return view("category_producttable", compact("product"));
+    }
+    public function category_productEdit(Request $request){
+       $product = Product::find($request->id);
+       return view("category_producttable", compact("product"));
     }
 }
