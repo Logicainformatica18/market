@@ -13,7 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                        @role('administrador')
+                        eres administrador
+                        @else
+                       eres vendedor
+                        @endrole
                     You are logged in!
                 </div>
             </div>
