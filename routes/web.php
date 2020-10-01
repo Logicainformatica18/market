@@ -22,42 +22,49 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['role:administrador']], function () {
 
+    Route::resource("categorias", 'CategoryController');
+    Route::post('categoryStore',"CategoryController@store");
+    Route::post('categoryEdit',"CategoryController@edit");
+    Route::post('categoryUpdate',"CategoryController@update");
+    Route::post('categoryDestroy',"CategoryController@destroy");
+    Route::post('categoryShow',"CategoryController@show");
+
+    Route::resource("productos", 'ProductController');
+    Route::post('productStore',"ProductController@store");
+    Route::post('productEdit',"ProductController@edit");
+    Route::post('productUpdate',"ProductController@update");
+    Route::post('productDestroy',"ProductController@destroy");
+
+
+    Route::post('category_productDestroy',"ProductController@category_productDestroy");
+    Route::post('category_productStore',"ProductController@category_productStore");
+    Route::post('category_productEdit',"ProductController@category_productEdit");
+
+    Route::resource("proveedores", 'ProviderController');
+    Route::post('providerStore',"ProviderController@store");
+    Route::post('providerEdit',"ProviderController@edit");
+    Route::post('providerUpdate',"ProviderController@update");
+    Route::post('providerDestroy',"ProviderController@destroy");
+    Route::post('providerShow',"ProviderController@show");
+
+    Route::resource("almacenes", 'WarehouseController');
+    Route::post('warehouseStore',"WarehouseController@store");
+    Route::post('warehouseEdit',"WarehouseController@edit");
+    Route::post('warehouseUpdate',"WarehouseController@update");
+    Route::post('warehouseDestroy',"WarehouseController@destroy");
+    Route::post('warehouseShow',"WarehouseController@show");
+
+    Route::resource("clientes", 'CustomerController');
+    Route::post('customerStore',"CustomerController@store");
+    Route::post('customerEdit',"CustomerController@edit");
+    Route::post('customerUpdate',"CustomerController@update");
+    Route::post('customerDestroy',"CustomerController@destroy");
+    Route::post('customerShow',"CustomerController@show");
+
+    Route::resource('usuarios', 'UserController');
+    Route::post('userStore', 'UserController@store');
+    Route::post('userDestroy', 'UserController@destroy');
+    Route::post('userEdit', 'UserController@edit');
+    Route::post('userUpdate', 'UserController@update');
+    Route::post('userShow', 'UserController@show');
 });
-Route::resource("categorias", 'CategoryController');
-Route::post('categoryStore',"CategoryController@store");
-Route::post('categoryEdit',"CategoryController@edit");
-Route::post('categoryUpdate',"CategoryController@update");
-Route::post('categoryDestroy',"CategoryController@destroy");
-Route::post('categoryShow',"CategoryController@show");
-
-Route::resource("productos", 'ProductController');
-Route::post('productStore',"ProductController@store");
-Route::post('productEdit',"ProductController@edit");
-Route::post('productUpdate',"ProductController@update");
-Route::post('productDestroy',"ProductController@destroy");
-
-
-Route::post('category_productDestroy',"ProductController@category_productDestroy");
-Route::post('category_productStore',"ProductController@category_productStore");
-Route::post('category_productEdit',"ProductController@category_productEdit");
-
-Route::resource("proveedores", 'ProviderController');
-Route::post('providerStore',"ProviderController@store");
-Route::post('providerEdit',"ProviderController@edit");
-Route::post('providerUpdate',"ProviderController@update");
-Route::post('providerDestroy',"ProviderController@destroy");
-Route::post('providerShow',"ProviderController@show");
-
-Route::resource("almacenes", 'WarehouseController');
-Route::post('warehouseStore',"WarehouseController@store");
-Route::post('warehouseEdit',"WarehouseController@edit");
-Route::post('warehouseUpdate',"WarehouseController@update");
-Route::post('warehouseDestroy',"WarehouseController@destroy");
-Route::post('warehouseShow',"WarehouseController@show");
-
-Route::resource("clientes", 'CustomerController');
-Route::post('customerStore',"CustomerController@store");
-Route::post('customerEdit',"CustomerController@edit");
-Route::post('customerUpdate',"CustomerController@update");
-Route::post('customerDestroy',"CustomerController@destroy");
-Route::post('customerShow',"CustomerController@show");

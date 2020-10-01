@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = Category::paginate(12);
+        $category = Category::paginate(10);
         return view("categorytable", compact("category"));
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $category=Category::where('description',"like",$show)->paginate(6);
+        $category=Category::where('description',"like",$show)->paginate(10);
         return view('categorytable',compact('category'));
     }
 

@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = Customer::paginate(10);
+        return view("customer", compact("customer"));
     }
 
     /**
@@ -24,7 +25,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $customer = Customer::paginate(10);
+        return view("customertable", compact("customer"));
     }
 
     /**
@@ -35,7 +37,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer;
+        $customer->dni = $request->dni;
+        $customer->firstname = $request->firstname;
+        $customer->lastname = $request->lastname;
+        $customer->name = $request->name;
+        $customer->cellphone = $request->cellphone;
+        $customer->email = $request->email;
+        $customer->save();
+        return $this->create();
     }
 
     /**
@@ -44,9 +54,11 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Request $request)
     {
-        //
+        $show="%".$request["show"]."%";
+        $customer=Customer::where("concat(firstname,' ',lastname,' ',name)","like",$show)->paginate(10);
+        return view('customertable',compact('customer'));
     }
 
     /**
@@ -55,9 +67,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(Request $request)
     {
-        //
+        $customer = Customer::find($request->id);
+        return $customer;
     }
 
     /**
@@ -67,9 +80,17 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request)
     {
-        //
+        $customer = Customer::find($request->id);
+        $customer->dni = $request->dni;
+        $customer->firstname = $request->firstname;
+        $customer->lastname = $request->lastname;
+        $customer->name = $request->name;
+        $customer->cellphone = $request->cellphone;
+        $customer->email = $request->email;
+        $customer->save();
+        return $this->create();
     }
 
     /**
@@ -78,8 +99,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Request $request)
     {
-        //
+        Customer::find($request->id)->delete();
+        return $this->create();
     }
 }

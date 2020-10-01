@@ -36,6 +36,7 @@
     <script src="{{ asset('person.js') }}"></script>
     <script src="{{ asset('product.js') }}"></script>
     <script src="{{ asset('customer.js') }}"></script>
+    <script src="{{ asset('user.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
          <!-- jQuery -->
@@ -798,28 +799,41 @@
             <!-- /.sidebar -->
         </aside>
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
 
 
-                    <!-- /.row -->
-                    @yield('content')
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.5
+
+                <!-- Main content -->
+                <div class="content-wrapper">
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            @yield('content')
+
+                        </div>
+                    </section>
+                    <!-- /.content -->
+                </div>
             </div>
-        </footer>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <strong>Copyright &copy; 2014-2019 <a target="_blank"
+                        href="https://www.facebook.com/anthony.cardenas.5602728">Cardenas Aquino Anthony -
+                        997852483</a>.</strong>
+                Todos los derechos reservados.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 1.0
+                </div>
+            </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+        </section>
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->

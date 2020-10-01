@@ -1,3 +1,9 @@
+function whatsapp(numero){
+
+
+    let url = "https://api.whatsapp.com/send?phone=51"+ numero + "&text=*Buenas -*%0A";
+    window.open(url);
+}
 
 function readImage(input) {
     if (input.files && input.files[0]) {

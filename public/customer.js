@@ -38,7 +38,12 @@ function customerEdit(id) {
             var contentdiv = document.getElementById("mycontent");
            // contentdiv.innerHTML = response.data["description"];
             customer.id.value=response.data["id"];
-            customer.description.value=response.data["description"];
+            customer.dni.value=response.data["dni"];
+            customer.firstname.value=response.data["firstname"];
+            customer.lastname.value=response.data["lastname"];
+            customer.name.value=response.data["name"];
+            customer.cellphone.value=response.data["cellphone"];
+            customer.email.value=response.data["email"];
         })
         .catch(function(response) {
             //handle error
