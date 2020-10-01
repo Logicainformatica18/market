@@ -29,7 +29,11 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <script src="{{ asset('axios.min.js') }}"></script>
+    <script src="{{ asset('category.js') }}"></script>
+    <script src="{{ asset('provider.js') }}"></script>
+    <script src="{{ asset('warehouse.js') }}"></script>
     <script src="{{ asset('function.js') }}"></script>
+    <script src="{{ asset('person.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
