@@ -1,6 +1,6 @@
-<table class="table table-responsive">
+<table class="table table-responsive  table-striped">
 
-    <th>id</th>
+    <th>Código</th>
     <th>Description</th>
     <th>acciones</th>
     <tbody>
@@ -11,13 +11,10 @@
                 <td>{{ $categorys->description }} </td>
 
                 <td>    <!-- Button trigger modal -->
-                    <button type="button"onclick="categoryEdit({{ $categorys->id }})" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                       edit
+                    <button type="button"onclick="categoryEdit({{ $categorys->id }});Up();" class="btn btn-success note-icon-pencil" data-toggle="modal" data-target="#exampleModal">
                     </button>
-                </td>
-                <td>    <!-- Button trigger modal -->
-                    <button type="button"onclick="categoryDestroy({{ $categorys->id }})" class="btn btn-danger">
-                       delete
+              <!-- Button trigger modal -->
+                    <button type="button"onclick="categoryDestroy({{ $categorys->id }})" class="btn btn-danger note-icon-trash">
                     </button>
                 </td>
             </tr>
@@ -25,3 +22,5 @@
 
     </tbody>
 </table>
+ <!-- /.content -->
+ {{ $category->onEachSide(5)->links() }}

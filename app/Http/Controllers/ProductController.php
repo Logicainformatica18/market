@@ -43,7 +43,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->description = $request->description;
         $product->save();
-        return $this->create();
+       // return $this->create();
     }
 
     /**

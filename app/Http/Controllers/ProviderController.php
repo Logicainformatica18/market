@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Provider;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProviderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-        $category = Category::paginate(10);
-        return view("category", compact("category"));
+        $provider = Provider::paginate(12);
+        return view("provider", compact("provider"));
     }
 
     /**
@@ -26,8 +25,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = Category::paginate(12);
-        return view("categorytable", compact("category"));
+        $provider = Provider::paginate(6);
+        return view("providertable", compact("provider"));
     }
 
     /**
@@ -38,66 +37,66 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $category = new Category;
-
-        $category->description = $request->description;
-
-        $category->save();
-     return $this->create();
+        $provider = new Provider();
+        $provider->name = $request->name;
+        $provider->description = $request->description;
+        $provider->cellphone = $request->cellphone;
+        $provider->save();
+        return $this->create();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $category=Category::where('description',"like",$show)->paginate(6);
-        return view('categorytable',compact('category'));
+        $provider=Provider::where('name',"like",$show)->paginate(6);
+        return view('providertable',compact('provider'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
     {
-        //
-        $category = Category::find($request->id);
-        return $category;
+        $provider = Provider::find($request->id);
+        return $provider;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $category = Category::find($request->id);
+        $provider = Provider::find($request->id);
 
-        $category->description = $request->description;
-        $category->save();
+        $provider->name = $request->name;
+        $provider->description = $request->description;
+        $provider->cellphone = $request->cellphone;
+        $provider->save();
         return $this->create();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        Category::find($request->id)->delete();
+        Provider::find($request->id)->delete();
         return $this->create();
     }
 }

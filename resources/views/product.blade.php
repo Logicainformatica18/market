@@ -3,14 +3,43 @@
 @section('content')
 
 
+       <!-- Content Wrapper. Contains page content -->
+       <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Productos</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Tablas</a></li>
+                            <li class="breadcrumb-item active">Productos</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
 
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
 
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Gestionar productos
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"onclick="New();$('#product')[0].reset();">
+        Gestionar Productos
     </button>
-<p></p>
+    <p></p>
+    Buscar
+    <form  name="for"id="show">
+        <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="productShow();">
+    </form>
+
+    <p></p>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -31,8 +60,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" onclick="productUpdate()" class="btn btn-warning">Modificar</button>
-                    <button type="button" onclick="productStore()" class="btn btn-success">Guardar</button>
+                    <button type="button"id="update" onclick="productUpdate()" class="btn btn-warning">Modificar</button>
+                    <button type="button"id="create" onclick="productStore()" class="btn btn-success">Guardar</button>
                 </div>
                 </form>
             </div>

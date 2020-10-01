@@ -16,7 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-
+            $table->bigInteger("warehouses_id")->unsigned();
+            $table->foreign("warehouses_id")->references("id")->on("warehouses")
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->bigInteger("providers_id")->unsigned();
+            $table->foreign("providers_id")->references("id")->on("providers")
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->string("description");
             $table->timestamps();
         });

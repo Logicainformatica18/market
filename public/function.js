@@ -1,3 +1,27 @@
+
+function readImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#blah').attr('src', e.target.result); // Renderizamos la imagen
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+
+        function New() {
+            document.getElementById("create").disabled = false;
+          //  document.getElementById("new").disabled = false;
+            document.getElementById("update").disabled = true;
+            // form.id.value = "";
+        }
+
+        function Up() {
+            document.getElementById("create").disabled = true;
+        //    form.new.disabled = true;
+            document.getElementById("update").disabled  = false;
+        }
 function personsStore() {
     var formData = new FormData(document.getElementById("persons"));
     axios({
@@ -199,7 +223,24 @@ if(confirm("¿Quieres eliminar este registro?")){
 }
 }
 
+function categoryShow() {
+    var formData = new FormData(document.getElementById("show"));
+    axios({
+            method: 'post',
+            url: 'categoryShow',
+            data: formData,
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
 
+}
 
 
 
@@ -383,3 +424,119 @@ function category_productDestroy(id,product_id) {
     }
 
 
+    function providerStore() {
+        var formData = new FormData(document.getElementById("provider"));
+        axios({
+                method: 'post',
+                url: 'providerStore',
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
+                //handle success
+                var contentdiv = document.getElementById("mycontent");
+                contentdiv.innerHTML = response.data;
+
+            })
+            .catch(function(response) {
+                //handle error
+                console.log(response);
+            });
+
+    }
+
+    function providerEdit(id) {
+        var formData = new FormData(document.getElementById("provider"));
+        formData.append("id",id);
+        axios({
+                method: 'post',
+                url: 'providerEdit',
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
+                //handle success
+                var contentdiv = document.getElementById("mycontent");
+               // contentdiv.innerHTML = response.data["description"];
+                provider.id.value=response.data["id"];
+                provider.name.value=response.data["name"];
+                provider.description.value=response.data["description"];
+                provider.cellphone.value=response.data["cellphone"];
+            })
+            .catch(function(response) {
+                //handle error
+                console.log(response);
+            });
+
+    }
+
+    function providerUpdate() {
+        var formData = new FormData(document.getElementById("provider"));
+        axios({
+                method: 'post',
+                url: 'providerUpdate',
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
+                //handle success
+                var contentdiv = document.getElementById("mycontent");
+                contentdiv.innerHTML = response.data;
+
+            })
+            .catch(function(response) {
+                //handle error
+                console.log(response);
+            });
+
+    }
+
+    function providerDestroy(id) {
+
+    if(confirm("¿Quieres eliminar este registro?")){
+      var formData = new FormData(document.getElementById("provider"));
+        formData.append("id",id)
+        axios({
+                method: 'post',
+                url: 'providerDestroy',
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(function(response) {
+                //handle success
+                var contentdiv = document.getElementById("mycontent");
+                contentdiv.innerHTML = response.data;
+
+            })
+            .catch(function(response) {
+                //handle error
+                console.log(response);
+            });
+    }
+    }
+    function providerShow() {
+        var formData = new FormData(document.getElementById("show"));
+        axios({
+                method: 'post',
+                url: 'providerShow',
+                data: formData,
+            })
+            .then(function(response) {
+                //handle success
+                var contentdiv = document.getElementById("mycontent");
+                contentdiv.innerHTML = response.data;
+            })
+            .catch(function(response) {
+                //handle error
+                console.log(response);
+            });
+
+    }
