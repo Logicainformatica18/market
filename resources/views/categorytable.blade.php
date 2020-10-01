@@ -1,8 +1,9 @@
-<table class="table table-responsive  table-striped">
-
-    <th>Código</th>
-    <th>Description</th>
-    <th>acciones</th>
+<table class="table table-responsive  table-striped"id="example1">
+    <thead>
+        <th>Código</th>
+        <th class="sorting_2">Description</th>
+        <th>acciones</th>
+    </thead>
     <tbody>
 
         @foreach ($category as $categorys)

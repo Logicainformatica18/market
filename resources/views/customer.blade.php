@@ -10,12 +10,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Almacenes</h1>
+                        <h1 class="m-0 text-dark">Clientes</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Tablas</a></li>
-                            <li class="breadcrumb-item active">Almacenes</li>
+                            <li class="breadcrumb-item active">Clientes</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,13 +30,13 @@
 
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"onclick="New();$('#warehouse')[0].reset();">
-       Gestionar Almacenes
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"onclick="New();$('#customer')[0].reset();">
+       Gestionar Clientes
     </button>
     <p></p>
     Buscar
     <form  name="for"id="show">
-        <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="warehouseShow();">
+        <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="customerShow();">
     </form>
 
     <p></p>
@@ -45,24 +45,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Almacenes</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Clientes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    <form action="" name="warehouse" id="warehouse">
+                    <form action="" name="customer" id="customer">
                         <input type="hidden" name="id">
-                        Nombres
-                        <input type="text" name="name" class="form-control">
-                        Description
+                      Description
                         <input type="text" name="description" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button"id="update" onclick="warehouseUpdate()" class="btn btn-warning">Modificar</button>
-                    <button type="button"id="create" onclick="warehouseStore()" class="btn btn-success">Guardar</button>
+                    <button type="button"id="update"  onclick="customerUpdate()" class="btn btn-warning">Modificar</button>
+                    <button type="button"id="create" onclick="customerStore()" class="btn btn-success">Guardar</button>
                 </div>
             </form>
             </div>
@@ -70,7 +68,7 @@
     </div>
 
     <div id="mycontent">
-        @include('warehousetable')
+        @include('customertable')
     </div>
 
 @endsection

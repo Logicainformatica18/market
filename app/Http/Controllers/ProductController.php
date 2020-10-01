@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Provider;
+use App\Warehouse;
 use App\category_product;
 use Illuminate\Http\Request;
 
@@ -18,7 +20,9 @@ class ProductController extends Controller
     {
         $product = Product::paginate(6);
         $category = Category::all();
-        return view("product", compact("product", "category"));
+        $provider = Provider::all();
+        $warehouse = Warehouse::all();
+        return view("product", compact("product", "category",'provider','warehouse'));
     }
 
     /**
@@ -40,10 +44,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $product = new Product;
         $product->description = $request->description;
-        $product->save();
-       // return $this->create();
+        $product->providers_id = $request->providers_id;
+        $product->warehouses_id = $request->warehouses_id;
+       $product->save();
+        return $this->create();
     }
 
     /**
@@ -79,13 +86,10 @@ class ProductController extends Controller
     public function update(Request $request)
     {
         $product = Product::find($request->id);
-
         $product->description = $request->description;
-        $product->category_id = $request->category_id;
+        $product->providers_id = $request->providers_id;
+        $product->warehouses_id = $request->warehouses_id;
         $product->save();
-
-
-
         return $this->create();
     }
 
@@ -100,6 +104,10 @@ class ProductController extends Controller
         Product::find($request->id)->delete();
         return $this->create();
     }
+
+
+
+
     public function category_productStore(Request $request){
         $category_product = new category_product();
         $category_product->category_id = $request->category_id;

@@ -47,3 +47,17 @@ Route::post('providerEdit',"ProviderController@edit");
 Route::post('providerUpdate',"ProviderController@update");
 Route::post('providerDestroy',"ProviderController@destroy");
 Route::post('providerShow',"ProviderController@show");
+
+Route::resource("almacenes", 'WarehouseController');
+Route::post('warehouseStore',"WarehouseController@store");
+Route::post('warehouseEdit',"WarehouseController@edit");
+Route::post('warehouseUpdate',"WarehouseController@update");
+Route::post('warehouseDestroy',"WarehouseController@destroy");
+Route::post('warehouseShow',"WarehouseController@show");
+
+Route::resource("clientes", 'CustomerController');
+Route::post('customerStore',"CustomerController@store");
+Route::post('customerEdit',"CustomerController@edit");
+Route::post('customerUpdate',"CustomerController@update");
+Route::post('customerDestroy',"CustomerController@destroy");
+Route::post('customerShow',"CustomerController@show");

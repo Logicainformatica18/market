@@ -1,9 +1,9 @@
 
-function warehouseStore() {
-    var formData = new FormData(document.getElementById("warehouse"));
+function customerStore() {
+    var formData = new FormData(document.getElementById("customer"));
     axios({
             method: 'post',
-            url: 'warehouseStore',
+            url: 'customerStore',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -22,12 +22,12 @@ function warehouseStore() {
 
 }
 
-function warehouseEdit(id) {
-    var formData = new FormData(document.getElementById("warehouse"));
+function customerEdit(id) {
+    var formData = new FormData(document.getElementById("customer"));
     formData.append("id",id);
     axios({
             method: 'post',
-            url: 'warehouseEdit',
+            url: 'customerEdit',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -37,9 +37,8 @@ function warehouseEdit(id) {
             //handle success
             var contentdiv = document.getElementById("mycontent");
            // contentdiv.innerHTML = response.data["description"];
-            warehouse.id.value=response.data["id"];
-            warehouse.name.value=response.data["name"];
-            warehouse.description.value=response.data["description"];
+            customer.id.value=response.data["id"];
+            customer.description.value=response.data["description"];
         })
         .catch(function(response) {
             //handle error
@@ -48,11 +47,11 @@ function warehouseEdit(id) {
 
 }
 
-function warehouseUpdate() {
-    var formData = new FormData(document.getElementById("warehouse"));
+function customerUpdate() {
+    var formData = new FormData(document.getElementById("customer"));
     axios({
             method: 'post',
-            url: 'warehouseUpdate',
+            url: 'customerUpdate',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -71,14 +70,14 @@ function warehouseUpdate() {
 
 }
 
-function warehouseDestroy(id) {
+function customerDestroy(id) {
 
 if(confirm("¿Quieres eliminar este registro?")){
-  var formData = new FormData(document.getElementById("warehouse"));
+  var formData = new FormData(document.getElementById("customer"));
     formData.append("id",id)
     axios({
             method: 'post',
-            url: 'warehouseDestroy',
+            url: 'customerDestroy',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -97,11 +96,11 @@ if(confirm("¿Quieres eliminar este registro?")){
 }
 }
 
-function warehouseShow() {
+function customerShow() {
     var formData = new FormData(document.getElementById("show"));
     axios({
             method: 'post',
-            url: 'warehouseShow',
+            url: 'customerShow',
             data: formData,
         })
         .then(function(response) {

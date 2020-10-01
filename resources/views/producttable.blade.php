@@ -1,9 +1,13 @@
-<table class="table table-responsive table-striped">
+<table class="table table-responsive  table-striped"id="example1">
+    <thead>
+        <th>Código</th>
+        <th class="sorting_2">Descripción</th>
+        <th>Categorias</th>
+        <th>Proveedor</th>
+        <th>Acciones</th>
+    </thead>
 
-    <th>Código</th>
-    <th>Descripción</th>
-    <th>Categorias</th>
-    <th>Acciones</th>
+
     <tbody>
 
         @foreach ($product as $products)
@@ -15,10 +19,11 @@
                         {{ $item->description }} <b> -</b>
                     @endforeach
                 </td>
+                <td>{{ $products->provider->name}} </td>
                 <td>
                 <button type="button" onclick="category_productEdit('{{$products->id }}');category_product.product_id.value='{{$products->id}}'" class="btn btn-warning" data-toggle="modal" data-target="#modal_category_product">Categoria</button>
                     <!-- Button trigger modal -->
-                    <button type="button" onclick="productEdit({{ $products->id }})" class="btn btn-success note-icon-pencil"
+                    <button type="button" onclick="productEdit({{ $products->id }});Up();" class="btn btn-success note-icon-pencil"
                         data-toggle="modal" data-target="#exampleModal">
                     </button>
                     <!-- Button trigger modal -->

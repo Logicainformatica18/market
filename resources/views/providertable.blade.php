@@ -1,10 +1,12 @@
-<table class="table table-responsive  table-striped">
+<table class="table table-responsive  table-striped"id="example1">
+    <thead>
+        <th>Código</th>
+        <th class="sorting">Nombre</th>
+        <th>Descripción</th>
+        <th>Celular</th>
+        <th>Acciones</th>
+    </thead>
 
-    <th>Código</th>
-    <th>Nombre</th>
-    <th>Descripción</th>
-    <th>Celular</th>
-    <th>Acciones</th>
     <tbody>
 
         @foreach ($provider as $providers)

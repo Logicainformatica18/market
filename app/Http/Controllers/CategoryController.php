@@ -40,11 +40,9 @@ class CategoryController extends Controller
     {
         //
         $category = new Category;
-
         $category->description = $request->description;
-
         $category->save();
-     return $this->create();
+        return $this->create();
     }
 
     /**
@@ -83,7 +81,6 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         $category = Category::find($request->id);
-
         $category->description = $request->description;
         $category->save();
         return $this->create();

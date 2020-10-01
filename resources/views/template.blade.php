@@ -34,7 +34,55 @@
     <script src="{{ asset('warehouse.js') }}"></script>
     <script src="{{ asset('function.js') }}"></script>
     <script src="{{ asset('person.js') }}"></script>
+    <script src="{{ asset('product.js') }}"></script>
+    <script src="{{ asset('customer.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+         <!-- jQuery -->
+         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+         <!-- jQuery UI 1.11.4 -->
+         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+         <script>
+             $.widget.bridge('uibutton', $.ui.button)
+
+         </script>
+         <!-- Bootstrap 4 -->
+         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+         <!-- ChartJS -->
+         <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+         <!-- Sparkline -->
+         <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+         <!-- JQVMap -->
+         <!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+     <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
+         <!-- jQuery Knob Chart -->
+         <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+         <!-- daterangepicker -->
+         <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+         <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+         <!-- Tempusdominus Bootstrap 4 -->
+         <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+         <!-- Summernote -->
+         <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+         <!-- overlayScrollbars -->
+         <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+         <!-- AdminLTE App -->
+         <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+
+         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+         <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+         <!-- AdminLTE for demo purposes -->
+         <script src="{{ asset('dist/js/demo.js') }}"></script>
+
+
+
+
+         <!-- DataTables -->
+         <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+         <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+         <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+         <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -443,6 +491,12 @@
                                         <p>Proveedores</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route("almacenes.index")}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Almacenes</p>
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a href="pages/tables/data.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -770,41 +824,34 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+                  $("#example1").DataTable({
+                "info": false,
+                "responsive": false,
+                "autoWidth": false,
+                "paging": false,
+                "searching": false,
+                "ordering": true
+            });
+       // datatableResponsive();
+
+        function datatableResponsive() {
+
+            $('#example2').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": false,
+            });
+        }
 
     </script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="plugins/moment/moment.min.js"></script>
-    <script src="plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+
 </body>
 
 </html>

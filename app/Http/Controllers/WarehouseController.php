@@ -14,7 +14,8 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        //
+        $warehouse = Warehouse::orderBy('created_at', 'Desc')->paginate(10);
+        return view("warehouse", compact("warehouse"));
     }
 
     /**
@@ -24,7 +25,8 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        //
+        $warehouse = Warehouse::orderBy('created_at', 'Desc')->paginate(10);
+        return view("warehousetable", compact("warehouse"));
     }
 
     /**
@@ -35,7 +37,11 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $warehouse = new Warehouse();
+        $warehouse->name = $request->name;
+        $warehouse->description = $request->description;
+        $warehouse->save();
+        return $this->create();
     }
 
     /**
@@ -44,9 +50,11 @@ class WarehouseController extends Controller
      * @param  \App\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function show(Warehouse $warehouse)
+    public function show(Request $request)
     {
-        //
+        $show="%".$request["show"]."%";
+        $warehouse=Warehouse::where('description',"like",$show)->paginate(6);
+        return view('warehousetable',compact('warehouse'));
     }
 
     /**
@@ -55,9 +63,10 @@ class WarehouseController extends Controller
      * @param  \App\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function edit(Warehouse $warehouse)
+    public function edit(Request $request)
     {
-        //
+        $warehouse = Warehouse::find($request->id);
+        return $warehouse;
     }
 
     /**
@@ -67,9 +76,13 @@ class WarehouseController extends Controller
      * @param  \App\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Warehouse $warehouse)
+    public function update(Request $request)
     {
-        //
+        $warehouse = Warehouse::find($request->id);
+        $warehouse->name = $request->name;
+        $warehouse->description = $request->description;
+        $warehouse->save();
+        return $this->create();
     }
 
     /**
@@ -78,8 +91,9 @@ class WarehouseController extends Controller
      * @param  \App\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Warehouse $warehouse)
+    public function destroy(Request $request)
     {
-        //
+        Warehouse::find($request->id)->delete();
+        return $this->create();
     }
 }
