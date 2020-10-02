@@ -133,3 +133,28 @@ function userShow() {
         });
 
 }
+
+
+
+function userUpdateProfile() {
+    var formData = new FormData(document.getElementById("user"));
+    axios({
+            method: 'post',
+            url: 'userUpdateProfile',
+            data: formData,
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+         alert('Modificado correctamente');
+         window.location.href='/home';
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
+}
+
+

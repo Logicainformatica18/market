@@ -1,9 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+// con esto le damos roles a los usuarios
+use Spatie\Permission\Traits\HasRoles;
+
 class UserController extends Controller
 {
     /**
@@ -13,8 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->paginate(6);
-        return view('user', compact('users'));
+        $user = User::orderBy('id', 'DESC')->paginate(6);
+        $roles = Role::all();
+        return view('user', compact('user', 'roles'));
     }
 
     /**
@@ -24,8 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = User::orderBy('id', 'DESC')->paginate(6);
-        return view('usertable', compact('users'));
+        $user = User::orderBy('id', 'DESC')->paginate(6);
+        return view('usertable', compact('user'));
     }
 
     /**
@@ -39,20 +46,23 @@ class UserController extends Controller
         $request->datebirth = datebirth($request->day, $request->month, $request->year);
 
         try {
-            $users = new User();
-            $users->dni = $request->dni;
-            $users->firstname = $request->firstname;
-            $users->lastname = $request->lastname;
-            $users->names = $request->names;
-            $users->password = $request->password ?: Hash::make("123456");
-            $users->datebirth = $request->datebirth;
-            $users->cellphone = $request->cellphone;
+            $user = new User();
+            $user->dni = $request->dni;
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->names = $request->names;
+            $user->password = $request->password;
+            $user->datebirth = $request->datebirth;
+            $user->cellphone = $request->cellphone;
             //photo
-            $request->photo = photoStore($request->file('photo'),"imageusers");
-            $users->photo = $request->photo;
-            $users->email = $request->email;
-            $users->sex = $request->sex;
-            $users->save();
+            if ($request->file('photo') != null) {
+                $request->photo = photoStore($request->file('photo'), "imageusers");
+                $user->photo = $request->photo;
+            }
+            $user->email = $request->email;
+            $user->sex = $request->sex;
+          //  $user->assignRole('Administrador');
+            $user->save();
         } catch (\Exception $e) {
             // do task when error
             //   return  $e->getMessage();   // insert query
@@ -83,11 +93,11 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $users =  User::find($request["id"]);
-      //  $users->datebirth=datebirth(date("d",$users->datebirth),date("m",$users->datebirth),date("Y",$users->datebirth));
+        //  $users->datebirth=datebirth(date("d",$users->datebirth),date("m",$users->datebirth),date("Y",$users->datebirth));
 
-      return $users;
-         //  return date("Y",$users->datebirth);
-       // return $users;
+        return $users;
+        //  return date("Y",$users->datebirth);
+        // return $users;
     }
 
     /**
@@ -99,10 +109,10 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-       $request->datebirth = datebirth($request->day, $request->month, $request->year);
+        $request->datebirth = datebirth($request->day, $request->month, $request->year);
 
         if ($request->photo == "") {
-            $users=User::find($request->id);
+            $users = User::find($request->id);
             $users->dni = $request->dni;
             $users->firstname = $request->firstname;
             $users->lastname = $request->lastname;
@@ -113,11 +123,11 @@ class UserController extends Controller
             $users->sex = $request->sex;
             $users->save();
         } else {
-            $table =User::find($request["id"]);
-            photoDestroy($table->photo,"imageusers");
-            $request->photo = photoStore($request->file('photo'),"imageusers");
+            $table = User::find($request["id"]);
+            photoDestroy($table->photo, "imageusers");
+            $request->photo = photoStore($request->file('photo'), "imageusers");
 
-            $users=User::find($request->id);
+            $users = User::find($request->id);
             $users->dni = $request->dni;
             $users->firstname = $request->firstname;
             $users->lastname = $request->lastname;
@@ -128,7 +138,6 @@ class UserController extends Controller
             $users->sex = $request->sex;
             $users->photo = $request->photo;
             $users->save();
-
         }
         return   $this->create();
     }
@@ -142,8 +151,29 @@ class UserController extends Controller
     public function destroy(Request $request)
     {
         $table = User::find($request["id"]);
-        photoDestroy($table->photo,"imageusers");
+        photoDestroy($table->photo, "imageusers");
         User::find($request["id"])->delete();
         return   $this->create();
     }
+    public function updateProfile(Request $request)
+    {
+        $request->datebirth = datebirth($request->day, $request->month, $request->year);
+        if ($request->photo == "") {
+            $users = User::find($request->id);
+            $users->datebirth = $request->datebirth;
+            $users->cellphone = $request->cellphone;
+
+            $users->save();
+        } else {
+            $table = User::find($request["id"]);
+            photoDestroy($table->photo, "imageusers");
+            $request->photo = photoStore($request->file('photo'), "imageusers");
+            $users = User::find($request->id);
+            $users->datebirth = $request->datebirth;
+            $users->cellphone = $request->cellphone;
+            $users->photo = $request->photo;
+            $users->save();
+        }
+    }
+
 }

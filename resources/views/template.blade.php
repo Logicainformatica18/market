@@ -37,53 +37,54 @@
     <script src="{{ asset('product.js') }}"></script>
     <script src="{{ asset('customer.js') }}"></script>
     <script src="{{ asset('user.js') }}"></script>
+    <script src="{{ asset('role.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-         <!-- jQuery -->
-         <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-         <!-- jQuery UI 1.11.4 -->
-         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-         <script>
-             $.widget.bridge('uibutton', $.ui.button)
+    <!-- jQuery -->
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
 
-         </script>
-         <!-- Bootstrap 4 -->
-         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-         <!-- ChartJS -->
-         <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-         <!-- Sparkline -->
-         <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
-         <!-- JQVMap -->
-         <!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
+    <!-- JQVMap -->
+    <!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
      <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
-         <!-- jQuery Knob Chart -->
-         <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-         <!-- daterangepicker -->
-         <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
-         <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-         <!-- Tempusdominus Bootstrap 4 -->
-         <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-         <!-- Summernote -->
-         <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-         <!-- overlayScrollbars -->
-         <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-         <!-- AdminLTE App -->
-         <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <!-- daterangepicker -->
+    <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
-         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-         <!-- <script src="dist/js/pages/dashboard.js"></script> -->
-         <!-- AdminLTE for demo purposes -->
-         <script src="{{ asset('dist/js/demo.js') }}"></script>
-
-
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- <script src="dist/js/pages/dashboard.js"></script> -->
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
 
 
-         <!-- DataTables -->
-         <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-         <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-         <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-         <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+
+
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -97,10 +98,17 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="{{ url('/home') }}" class="nav-link">Perfil</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                        {{ __('Cerrar Sesión') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
 
@@ -231,11 +239,27 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        @if (Auth::user()->photo=="" && Auth::user()->sex=="M" )
+                    <img src="{{asset('male.png')}}" class="img-circle elevation-2" alt="User Image">
+                        @elseif (Auth::user()->photo=="" && Auth::user()->sex=="F" )
+                        <img src="{{asset('female.png')}}" class="img-circle elevation-2" alt="User Image">
+                        @else
+                        <img src="{{ asset('imageusers/'.Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
+                        @endif
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">{{ Auth::user()->names }}</a><br>
                     </div>
+                    <br>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        {{ __('Cerrar Sesión') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
                 </div>
 
                 <!-- Sidebar Menu -->
@@ -469,33 +493,39 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/tables/simple.html" class="nav-link">
+                                    <a href="{{ route('usuarios.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Persons</p>
+                                        <p>Usuarios</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route("productos.index")}}" class="nav-link">
+                                    <a href="{{ route('productos.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Productos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route("categorias.index")}}" class="nav-link">
+                                    <a href="{{ route('categorias.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Categorías</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route("proveedores.index")}}" class="nav-link">
+                                    <a href="{{ route('proveedores.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Proveedores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route("almacenes.index")}}" class="nav-link">
+                                    <a href="{{ route('almacenes.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Almacenes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('roles.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Roles</p>
                                     </a>
                                 </li>
                                 {{-- <li class="nav-item">
@@ -841,15 +871,15 @@
 
 
     <script>
-                  $("#example1").DataTable({
-                "info": false,
-                "responsive": false,
-                "autoWidth": false,
-                "paging": false,
-                "searching": false,
-                "ordering": true
-            });
-       // datatableResponsive();
+        $("#example1").DataTable({
+            "info": false,
+            "responsive": false,
+            "autoWidth": false,
+            "paging": false,
+            "searching": false,
+            "ordering": true
+        });
+        // datatableResponsive();
 
         function datatableResponsive() {
 

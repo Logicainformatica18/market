@@ -51,13 +51,19 @@
                     <form action="" method="post" role="form" id="user" name="form">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
-
+                        Roles :
+                        <select name="role" id="" class="form-control">
+                            @foreach ($roles as $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                         Dni<input name="dni" type="number" class="form-control">
                         Paterno<input name="firstname" type="text" class="form-control">
                         Materno<input name="lastname" type="text" class="form-control">
                         Nombres<input name="names" type="text" class="form-control">
                         Celular<input type="number" name="cellphone" class="form-control">
                         Email<input type="text" name="email" class="form-control">
+                        Contraseña<input type="password" name="password" class="form-control">
                         Sexo
                         <div class="container">
                             <div class="row ">
@@ -143,6 +149,7 @@
             </div>
         </div>
     </div>
+
 
 
 @endsection

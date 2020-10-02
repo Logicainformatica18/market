@@ -20,7 +20,8 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['role:administrador']], function () {
+// in group we can add several roles to the middelware
+Route::group(['middleware' => ['role:administrador|ventas']], function () {
 
     Route::resource("categorias", 'CategoryController');
     Route::post('categoryStore',"CategoryController@store");
@@ -67,4 +68,20 @@ Route::group(['middleware' => ['role:administrador']], function () {
     Route::post('userEdit', 'UserController@edit');
     Route::post('userUpdate', 'UserController@update');
     Route::post('userShow', 'UserController@show');
+    Route::post('userUpdateProfile', 'UserController@updateProfile');
+
+    Route::post('userRoleStore',"UserController@userRoleStore");
+    Route::post('userRoleEdit',"UserController@userRoleEdit");
+    Route::post('userRoleDestroy',"UserController@userRoleDestroy");
+
+    Route::resource("roles", 'RolesController');
+    Route::post('roleStore',"RolesController@store");
+    Route::post('roleEdit',"RolesController@edit");
+    Route::post('roleUpdate',"RolesController@update");
+    Route::post('roleDestroy',"RolesController@destroy");
+    Route::post('roleShow',"RolesController@show");
+
+    Route::post('rolePermissionStore',"RolesController@rolePermissionStore");
+    Route::post('rolePermissionEdit',"RolesController@rolePermissionEdit");
+    Route::post('rolePermissionDestroy',"RolesController@rolePermissionDestroy");
 });

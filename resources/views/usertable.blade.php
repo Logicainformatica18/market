@@ -27,37 +27,42 @@
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($user as $users)
                                         <tr>
-                                            <td>{{ $user->id }}</td>
-                                            <td>{{ $user->dni }}</td>
-                                            <td>{{ $user->firstname }}</td>
-                                            <td>{{ $user->lastname }}</td>
-                                            <td>{{ $user->names }}</td>
-                                            <td>{{ $user->cellphone }}</td>
-                                            @if ($user->photo == '' && $user->sex == 'M')
+                                            <td>{{ $users->id }}</td>
+                                            <td>{{ $users->dni }}</td>
+                                            <td>{{ $users->firstname }}</td>
+                                            <td>{{ $users->lastname }}</td>
+                                            <td>{{ $users->names }}</td>
+                                            <td>{{ $users->cellphone }}</td>
+                                            @if ($users->photo == '' && $users->sex == 'M')
                                                 @php
-                                                $user->photo = '../male.png'
+                                                $users->photo = '../male.png'
                                                 @endphp
 
-                                            @elseif($user->photo == '' && $user->sex == 'F')
+                                            @elseif($users->photo == '' && $users->sex == 'F')
                                                 @php
-                                                $user->photo = '../female.png'
+                                                $users->photo = '../female.png'
                                                 @endphp
                                             @endif
-                                            <td><img src="{{ asset('imageusers/' . $user->photo) }}" alt="" srcset=""
+                                            <td><img src="{{ asset('imageusers/' . $users->photo) }}" alt="" srcset=""
                                                     width="50"></td>
-                                            <td>{{ $user->position }}</td>
+                                            <td>
+                                                @foreach ($users->roles as $item)
+                                                {{ $item->name }} <b> -</b>
+                                            @endforeach
+                                            </td>
 
                                             <td>
+
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-success note-icon-pencil"
                                                     data-toggle="modal" data-target="#exampleModal"
-                                                    onclick="userEdit('{{ $user->id }}'); Up();  return false"></button>
+                                                    onclick="userEdit('{{ $users->id }}'); Up();  return false"></button>
 
                                                 <!-- <button class="note-icon-pencil" ></button> -->
                                                 <button class="btn btn-danger note-icon-trash"
-                                                    onclick="userDestroy('{{ $user->id }}'); return false"></button>
+                                                    onclick="userDestroy('{{ $users->id }}'); return false"></button>
                                             </td>
 
                                         </tr>
@@ -66,7 +71,7 @@
 
                             </table>
                             <!-- /.content -->
-                            {{ $users->onEachSide(1)->links() }}
+                            {{ $user->onEachSide(1)->links() }}
                         </div>
                     </div>
                 </div>

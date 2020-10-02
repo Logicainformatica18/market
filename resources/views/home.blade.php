@@ -7,13 +7,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Profile</h1>
+                    <h1>Perfil</h1>
                     {{ session('success') }}
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item active">Perfil</li>
                     </ol>
                 </div>
             </div>
@@ -29,15 +29,15 @@
 
                     <div class="col-md-4">
                         <!-- Profile Image -->
-                        <div class="card card-primary card-outline">
+                        <div class="card card-primary card-outline" id="mycontent">
                             <div class="card-body box-profile">
                                 <div class="text-center">
 
                                     @if ($users->photo == '' && $users->sex == 'M')
-                                        <img src='imageusers/male.png' class='profile-user-img img-fluid img-circle'
+                                        <img src='male.png' class='profile-user-img img-fluid img-circle'
                                             alt='User Image'>
                                     @elseif($users->photo == '' && $users->sex == 'F')
-                                        <img src='imageusers/male.png' class='profile-user-img img-fluid img-circle'
+                                        <img src='female.png' class='profile-user-img img-fluid img-circle'
                                             alt='User Image'>
                                     @else
                                         <img src="imageusers/{{$users->photo}}" class='profile-user-img img-fluid img-circle'
@@ -50,6 +50,9 @@
 
                                 <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
+                                    <b>Nombres</b> <a class="float-right">{{ $users->firstname }} {{$users->lastname}} {{$users->names}}</a>
+                                    </li>
+                                    <li class="list-group-item">
                                         <b>DNI</b> <a class="float-right">{{ $users->dni }}</a>
                                     </li>
                                     <li class="list-group-item">
@@ -59,10 +62,7 @@
                                         <b>Nacimiento</b> <a class="float-right">{{ $users->datebirth }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Email</b><br> <a class="float-right">
-                                        <br>
-                                        {{ $users->email }}
-                                    </a>
+                                        <b>Email</b> <a class="float-right">{{ $users->email }}</a>
                                     </li>
                                 </ul>
 
@@ -72,7 +72,7 @@
                                     Cambiar Contraseña
                                 </button>
                                 <p></p>
-                                <button type="button" class="btn btn-success" onclick="envioWhatsapp('')">Whatsapp
+                                <button type="button" class="btn btn-success" onclick="whatsapp('997852483')">Whatsapp
                                     Desarrollador</button>
                             </div>
                             <!-- /.card-body -->
@@ -87,6 +87,7 @@
                         <div class="card">
                             <form accept-charset="utf-8" id="user" method="POST" action="" enctype="multipart/form-data"
                                 name="user">
+                        <input type="hidden" name="id"value="{{$users->id}}">
                                 <div class="card-header p-2">
                                     <ul class="nav nav-pills">
                                         <li class="nav-item"><a class="nav-link active" href="#settings"
@@ -96,7 +97,6 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="active tab-pane" id="settings">
-                                            <input type="hidden" name="codigo" value="">
                                             <div class="form-group row">
                                                 <label for="inputEmail" class="col-sm-2
                                             col-form-label">Fotografía</label>
@@ -127,13 +127,16 @@
 
                                                     <div class="row">
                                                         <div class="col s4">
-                                                            <select name="Dia" class="form-control">
+
+
+                                                            <select name="day" class="form-control">
                                                                 <option>Dia</option>
                                                                 <?php for ($a = 1; $a <= 31; $a++) {
                                                                     echo "<option value='$a'>" . $a . '</option>' ; } ?> </select>
                                                         </div>
+
                                                         <div class="col s4">
-                                                            <select name="Mes" class="form-control">
+                                                            <select name="month" class="form-control">
                                                                 <option>Mes</option>
                                                                 <?php
                                                                 $mes = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul',
@@ -142,7 +145,7 @@
                                                                     $mes[$b] . '</option>' ; } ?> </select>
                                                         </div>
                                                         <div class="col s4">
-                                                            <select name="Año" class="form-control">
+                                                            <select name="year" class="form-control">
                                                                 <option>Año</option>
                                                                 <?php
                                                                 $c = 2020;
@@ -152,8 +155,9 @@
                                                                 }
                                                                 ?>
                                                             </select>
-
-
+                                                            <?php  echo "<script> user.day.value=".substr($users->datebirth,8,2).";</script>"  ?>
+                                                            <?php  echo "<script> user.month.value=".substr($users->datebirth,5,2).";</script>"  ?>
+                                                            <?php  echo "<script> user.year.value=".substr($users->datebirth,0,4).";</script>"  ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,7 +165,7 @@
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">
                                                     <button type="button" class="btn btn-danger"
-                                                        onclick="userUpdatePerfil();">Guardar cambios</button>
+                                                        onclick="userUpdateProfile();">Guardar cambios</button>
                                                 </div>
                                             </div>
 
