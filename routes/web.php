@@ -91,4 +91,11 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('distributionUpdate',"DistributionController@update");
     Route::post('distributionDestroy',"DistributionController@destroy");
     Route::post('distributionShow',"DistributionController@show");
+
+    Route::resource("colores", 'ColorController');
+    Route::post('colorStore',"ColorController@store");
+    Route::post('colorEdit',"ColorController@edit");
+    Route::post('colorUpdate',"ColorController@update");
+    Route::post('colorDestroy',"ColorController@destroy");
+    Route::post('colorShow',"ColorController@show");
 });
