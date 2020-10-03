@@ -41,6 +41,6 @@ class User extends Authenticatable
     public function roles()
     {
         //pertenece a muchas roles - agregamos el id de la tabla asociativa - pivot
-        return $this->belongsToMany('Spatie\Permission\Models\Role', 'model_has_roles','model_id')->withPivot('model_id');
+        return $this->belongsToMany('Spatie\Permission\Models\Role', 'model_has_roles','model_id')->withPivot('model_id','model_type');
     }
 }

@@ -46,23 +46,35 @@ class UserController extends Controller
         $request->datebirth = datebirth($request->day, $request->month, $request->year);
 
         try {
-            $user = new User();
-            $user->dni = $request->dni;
-            $user->firstname = $request->firstname;
-            $user->lastname = $request->lastname;
-            $user->names = $request->names;
-            $user->password = $request->password;
-            $user->datebirth = $request->datebirth;
-            $user->cellphone = $request->cellphone;
-            //photo
-            if ($request->file('photo') != null) {
-                $request->photo = photoStore($request->file('photo'), "imageusers");
-                $user->photo = $request->photo;
-            }
-            $user->email = $request->email;
-            $user->sex = $request->sex;
-          //  $user->assignRole('Administrador');
+            // $user = new User();
+            // $user->dni = $request->dni;
+            // $user->firstname = $request->firstname;
+            // $user->lastname = $request->lastname;
+            // $user->names = $request->names;
+            // $user->password = $request->password;
+            // $user->datebirth = $request->datebirth;
+            // $user->cellphone = $request->cellphone;
+            // //photo
+            // if ($request->file('photo') != null) {
+            //     $request->photo = photoStore($request->file('photo'), "imageusers");
+            //     $user->photo = $request->photo;
+            // }
+            // $user->email = $request->email;
+            // $user->sex = $request->sex;
+            // $user->save();
+            $user = User::create([
+            'dni' => $request->dni,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'name' => $request->names,
+            'password' => $request->password,
+            'datebirth' => $request->datebirth,
+            'cellphone' => $request->cellphone,
+            'email' => $request->email,
+            'sex' => $request->sex
+            ]);
             $user->save();
+            //$user->syncRoles('Administrador');
         } catch (\Exception $e) {
             // do task when error
             //   return  $e->getMessage();   // insert query
