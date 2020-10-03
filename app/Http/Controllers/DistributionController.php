@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Distribution;
+use App\Product;
+use App\Warehouse;
 use Illuminate\Http\Request;
 
 class DistributionController extends Controller
@@ -15,7 +17,9 @@ class DistributionController extends Controller
     public function index()
     {
         $distribution = Distribution::paginate(10);
-        return view("distribution", compact("distribution"));
+        $product = Product::all();
+        $warehouse = Warehouse::all();
+        return view("distribution", compact("distribution",'product','warehouse'));
     }
 
     /**
@@ -25,7 +29,8 @@ class DistributionController extends Controller
      */
     public function create()
     {
-        //
+        $distribution = Distribution::paginate(10);
+        return view("distributiontable", compact("distribution"));
     }
 
     /**
@@ -36,7 +41,12 @@ class DistributionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $distribution = new Distribution();
+        $distribution->products_id = substr($request->products_id,strpos($request->products_id,"-")+1,100);
+        $distribution->warehouses_id = $request->warehouses_id;
+        $distribution->quantity = $request->quantity;
+        $distribution->save();
+        return $this->create();
     }
 
     /**
@@ -45,9 +55,11 @@ class DistributionController extends Controller
      * @param  \App\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function show(Distribution $distribution)
+    public function show(Request $request)
     {
-        //
+        // $show="%".$request["show"]."%";
+        // $distribution=Product::where('description',"like",$show)->paginate(10);
+        // return view('dis$distributiontable',compact('dis$distribution'));
     }
 
     /**
@@ -56,9 +68,13 @@ class DistributionController extends Controller
      * @param  \App\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function edit(Distribution $distribution)
+    public function edit(Request $request)
     {
-        //
+        $distribution = Distribution::find($request->id);
+        $product_id=$distribution["products_id"];
+        $product = Product::find($product_id);
+        $distribution->products_id=$product["description"];
+        return $distribution;
     }
 
     /**
@@ -68,9 +84,14 @@ class DistributionController extends Controller
      * @param  \App\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Distribution $distribution)
+    public function update(Request $request)
     {
-        //
+        $distribution = Distribution::find($request->id);
+        $distribution->products_id = substr($request->products_id,strpos($request->products_id,"-")+1,100);
+        $distribution->warehouses_id = $request->warehouses_id;
+        $distribution->quantity = $request->quantity;
+        $distribution->save();
+        return $this->create();
     }
 
     /**
@@ -79,8 +100,9 @@ class DistributionController extends Controller
      * @param  \App\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Distribution $distribution)
+    public function destroy(Request $request)
     {
-        //
+        Distribution::find($request->id)->delete();
+        return $this->create();
     }
 }

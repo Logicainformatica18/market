@@ -38,6 +38,7 @@
     <script src="{{ asset('customer.js') }}"></script>
     <script src="{{ asset('user.js') }}"></script>
     <script src="{{ asset('role.js') }}"></script>
+    <script src="{{ asset('distribution.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jQuery -->

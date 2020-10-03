@@ -41,7 +41,6 @@ function productEdit(id) {
            // contentdiv.innerHTML = response.data["description"];
             product.id.value=response.data["id"];
             product.providers_id.value=response.data["providers_id"];
-            product.warehouses_id.value=response.data["warehouses_id"];
             product.description.value=response.data["description"];
         })
         .catch(function(response) {

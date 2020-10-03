@@ -61,12 +61,6 @@
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                    Almacen
-                                    <select class="form-control" name="warehouses_id" id="">
-                                        @foreach ($warehouse as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
                                     <input type="hidden" name="id">
                                     Description
                                     <input type="text" name="description" class="form-control">

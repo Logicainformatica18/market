@@ -80,8 +80,8 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $show = "%" . $request["show"] . "%";
-        $users = User::where('firstname', "like", $show)->paginate(6);
-        return view('usertable', compact('users'));
+        $user = User::where('firstname', "like", $show)->paginate(6);
+        return view('usertable', compact('user'));
     }
 
     /**
@@ -93,11 +93,6 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $users =  User::find($request["id"]);
-        //  $users->datebirth=datebirth(date("d",$users->datebirth),date("m",$users->datebirth),date("Y",$users->datebirth));
-       // return  $users->roles_->pivot->model_type;
-        //  return date("Y",$users->datebirth);
-
-
          return $users;
     }
 
@@ -127,7 +122,6 @@ class UserController extends Controller
             $table = User::find($request["id"]);
             photoDestroy($table->photo, "imageusers");
             $request->photo = photoStore($request->file('photo'), "imageusers");
-
             $users = User::find($request->id);
             $users->dni = $request->dni;
             $users->firstname = $request->firstname;

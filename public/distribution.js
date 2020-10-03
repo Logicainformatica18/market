@@ -34,11 +34,10 @@ function distributionEdit(id) {
             }
         })
         .then(function(response) {
-            //handle success
-            var contentdiv = document.getElementById("mycontent");
-           // contentdiv.innerHTML = response.data["description"];
             distribution.id.value=response.data["id"];
-            distribution.description.value=response.data["description"];
+            distribution.products_id.value=response.data["products_id"];
+            distribution.warehouses_id.value=response.data["warehouses_id"];
+            distribution.quantity.value=response.data["quantity"];
         })
         .catch(function(response) {
             //handle error

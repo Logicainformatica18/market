@@ -21,8 +21,7 @@ class ProductController extends Controller
         $product = Product::paginate(6);
         $category = Category::all();
         $provider = Provider::all();
-        $warehouse = Warehouse::all();
-        return view("product", compact("product", "category",'provider','warehouse'));
+        return view("product", compact("product", "category",'provider'));
     }
 
     /**
@@ -48,7 +47,6 @@ class ProductController extends Controller
         $product = new Product;
         $product->description = $request->description;
         $product->providers_id = $request->providers_id;
-        $product->warehouses_id = $request->warehouses_id;
        $product->save();
         return $this->create();
     }
@@ -88,7 +86,6 @@ class ProductController extends Controller
         $product = Product::find($request->id);
         $product->description = $request->description;
         $product->providers_id = $request->providers_id;
-        $product->warehouses_id = $request->warehouses_id;
         $product->save();
         return $this->create();
     }

@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Distribution extends Model
 {
     protected $fillable = ['id', 'quantity','products_id','warehouses_id'];
+    public function product(){
+        return $this->belongsTo('App\Product', 'products_id');
+    }
+    public function warehouse(){
+        return $this->belongsTo('App\Warehouse', 'warehouses_id');
+    }
 }

@@ -51,7 +51,7 @@
                     <form action="" method="post" role="form" id="role" name="form">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
-                        Descripción : <input type="text" name="name" id="description" class="form-control">
+                        Nombre : <input type="text" name="name" id="name" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <input type="button" value="Nuevo" class="btn btn-warning" onclick="New();$('#role')[0].reset();"

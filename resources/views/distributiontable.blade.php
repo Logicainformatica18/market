@@ -16,14 +16,20 @@
                             <table id="example1" class="table table-bordered table-striped table-responsive">
                                 <thead>
                                     <th class="sorting">Código</th>
-                                    <th class="sorting">Descripción</th>
+                                    <th class="sorting">Producto</th>
+                                    <th class="sorting">Cantidad</th>
+                                    <th class="sorting">Almacén</th>
+                                    <th class="sorting">Fecha</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($distribution as $distributions)
                                         <tr>
                                             <td>{{ $distributions->id }}</td>
+                                            <td>{{ $distributions->product->description }}</td>
                                             <td>{{ $distributions->quantity }}</td>
+                                            <td>{{ $distributions->warehouse->name }}</td>
+                                            <td>{{ $distributions->created_at }}</td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-success note-icon-pencil"

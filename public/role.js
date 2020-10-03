@@ -38,7 +38,7 @@ function roleEdit(id) {
             var contentdiv = document.getElementById("mycontent");
            // contentdiv.innerHTML = response.data["description"];
             role.id.value=response.data["id"];
-            role.description.value=response.data["description"];
+            role.name.value=response.data["name"];
         })
         .catch(function(response) {
             //handle error
