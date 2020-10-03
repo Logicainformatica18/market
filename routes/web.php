@@ -84,4 +84,11 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('rolePermissionStore',"RolesController@rolePermissionStore");
     Route::post('rolePermissionEdit',"RolesController@rolePermissionEdit");
     Route::post('rolePermissionDestroy',"RolesController@rolePermissionDestroy");
+
+    Route::resource("distribuciones", 'DistributionController');
+    Route::post('distributionStore',"DistributionController@store");
+    Route::post('distributionEdit',"DistributionController@edit");
+    Route::post('distributionUpdate',"DistributionController@update");
+    Route::post('distributionDestroy',"DistributionController@destroy");
+    Route::post('distributionShow',"DistributionController@show");
 });

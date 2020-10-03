@@ -49,7 +49,7 @@
                                                     width="50"></td>
                                             <td>
 
-                                                @foreach ($users->role as $item)
+                                                @foreach ($users->roles_ as $item)
                                                 {{ $item->name }}
                                                 @endforeach
                                             </td>

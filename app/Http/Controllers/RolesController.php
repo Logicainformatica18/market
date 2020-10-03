@@ -42,7 +42,7 @@ class RolesController extends Controller
         $role = new Role;
         $role->name = $request->name;
         // asignar role
-       // $role->syncPermissions("administrar");
+        $role->syncPermissions("administrar");
         $role->save();
         return $this->create();
     }

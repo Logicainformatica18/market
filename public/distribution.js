@@ -1,0 +1,116 @@
+
+function distributionStore() {
+    var formData = new FormData(document.getElementById("distribution"));
+    axios({
+            method: 'post',
+            url: 'distributionStore',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
+}
+
+function distributionEdit(id) {
+    var formData = new FormData(document.getElementById("distribution"));
+    formData.append("id",id);
+    axios({
+            method: 'post',
+            url: 'distributionEdit',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+           // contentdiv.innerHTML = response.data["description"];
+            distribution.id.value=response.data["id"];
+            distribution.description.value=response.data["description"];
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
+}
+
+function distributionUpdate() {
+    var formData = new FormData(document.getElementById("distribution"));
+    axios({
+            method: 'post',
+            url: 'distributionUpdate',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
+}
+
+function distributionDestroy(id) {
+
+if(confirm("¿Quieres eliminar este registro?")){
+  var formData = new FormData(document.getElementById("distribution"));
+    formData.append("id",id)
+    axios({
+            method: 'post',
+            url: 'distributionDestroy',
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+}
+}
+
+function distributionShow() {
+    var formData = new FormData(document.getElementById("show"));
+    axios({
+            method: 'post',
+            url: 'distributionShow',
+            data: formData,
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
+}
