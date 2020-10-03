@@ -38,7 +38,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function roles()
+    public function role()
     {
         //pertenece a muchas roles - agregamos el id de la tabla asociativa - pivot
         return $this->belongsToMany('Spatie\Permission\Models\Role', 'model_has_roles','model_id')->withPivot('model_id','model_type');

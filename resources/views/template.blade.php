@@ -528,6 +528,12 @@
                                         <p>Roles</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('clientes.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Clientes</p>
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a href="pages/tables/data.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>

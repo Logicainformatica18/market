@@ -23,7 +23,7 @@
                                     <th>Nombres</th>
                                     <th>Celular</th>
                                     <th>Foto</th>
-                                    <th>Cargo</th>
+                                    <th>Rol ó Cargo</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
@@ -49,7 +49,7 @@
                                                     width="50"></td>
                                             <td>
 
-                                                @foreach ($users->roles as $item)
+                                                @foreach ($users->role as $item)
                                                 {{ $item->name }}
                                                 @endforeach
                                             </td>
