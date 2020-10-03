@@ -94,10 +94,11 @@ class UserController extends Controller
     {
         $users =  User::find($request["id"]);
         //  $users->datebirth=datebirth(date("d",$users->datebirth),date("m",$users->datebirth),date("Y",$users->datebirth));
-
-        return $users;
+       // return  $users->roles_->pivot->model_type;
         //  return date("Y",$users->datebirth);
-        // return $users;
+
+
+         return $users;
     }
 
     /**

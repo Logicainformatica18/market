@@ -57,7 +57,6 @@ function userEdit(id) {
             }
         })
         .then(function(response) {
-
             user.id.value = response.data["id"];
             user.dni.value = response.data["dni"];
             user.firstname.value = response.data["firstname"];

@@ -108,7 +108,7 @@ class RolesController extends Controller
     public function rolePermissionDestroy(Request $request)
     {
 
-        $role=Role::find($request->id)->delete();
+        $role=Role::find($request->id);
         $role->revokePermissionTo($request->permission);
 
         return $this->rolePermissionTable($request->id);
