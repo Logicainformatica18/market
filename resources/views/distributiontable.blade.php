@@ -45,8 +45,7 @@
                                 </tbody>
 
                             </table>
-                                <!-- /.content -->
-                                {{ $distribution->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

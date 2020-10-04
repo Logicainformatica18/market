@@ -35,7 +35,7 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('productEdit',"ProductController@edit");
     Route::post('productUpdate',"ProductController@update");
     Route::post('productDestroy',"ProductController@destroy");
-
+    Route::post('productShow',"ProductController@show");
 
     Route::post('category_productDestroy',"ProductController@category_productDestroy");
     Route::post('category_productStore',"ProductController@category_productStore");

@@ -44,8 +44,7 @@
 
                                 </tbody>
                             </table>
-                            <!-- /.content -->
-                            {{ $provider->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

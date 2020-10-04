@@ -38,8 +38,7 @@
 
     </tbody>
 </table>
- <!-- /.content -->
- {{ $warehouse->onEachSide(5)->links() }}
+
 </div>
 </div>
 </div>

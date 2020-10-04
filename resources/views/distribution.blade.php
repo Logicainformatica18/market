@@ -29,7 +29,8 @@
                             <form  name="for"id="show">
                                 <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="distributionShow();">
                             </form>
-
+   <!-- /.content -->
+   {{ $distribution->onEachSide(5)->links() }}
                             <p></p>
                             <div id="mycontent">
                                 @include("distributiontable")

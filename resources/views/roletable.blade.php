@@ -43,8 +43,7 @@
                                 </tbody>
 
                             </table>
-                                <!-- /.content -->
-                                {{ $role->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

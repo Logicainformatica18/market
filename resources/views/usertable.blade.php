@@ -71,8 +71,7 @@
                                 </tbody>
 
                             </table>
-                            <!-- /.content -->
-                            {{ $user->onEachSide(1)->links() }}
+
                         </div>
                     </div>
                 </div>

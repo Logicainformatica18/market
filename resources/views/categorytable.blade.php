@@ -39,8 +39,7 @@
                                 </tbody>
 
                             </table>
-                                <!-- /.content -->
-                                {{ $category->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

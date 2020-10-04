@@ -17,4 +17,10 @@ class Product extends Model
     public function provider(){
         return $this->belongsTo('App\Provider', 'providers_id');
     }
+
+    public function colors()
+    {
+        //pertenece a muchas - agregamos el id de la tabla asociativa - pivot
+        return $this->belongsToMany('App\Color', 'product_has_colors','products_id')->withPivot('id');
+    }
 }

@@ -57,9 +57,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Request $request)
     {
-        //
+        $show="%".$request["show"]."%";
+        $product=Product::where('description',"like",$show)->paginate(6);
+        return view('producttable',compact('product'));
     }
 
     /**

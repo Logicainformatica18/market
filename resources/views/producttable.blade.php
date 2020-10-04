@@ -48,8 +48,7 @@
 
     </tbody>
 </table>
-                                <!-- /.content -->
-                                {{ $product->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

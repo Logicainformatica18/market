@@ -13,7 +13,7 @@
                         <div class="card-body">
 
                             <!-- DataTables -->
-                            <table id="example1" class="table table-bordered table-striped table-responsive">
+                            <table id="example1" class="table table-bordered table-striped table-responsive dataTable">
                                 <thead>
                                     <th class="sorting">Código</th>
                                     <th class="sorting">Dni</th>
@@ -52,8 +52,7 @@
                                 </tbody>
 
                             </table>
-                                <!-- /.content -->
-                                {{ $customer->onEachSide(5)->links() }}
+
                         </div>
                     </div>
                 </div>

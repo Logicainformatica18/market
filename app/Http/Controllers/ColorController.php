@@ -14,7 +14,8 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        $color = Color::paginate(10);
+        return view("color", compact("color"));
     }
 
     /**
@@ -24,7 +25,8 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        $color = Color::paginate(10);
+        return view("colortable", compact("color"));
     }
 
     /**
@@ -35,7 +37,10 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $color = new Color;
+        $color->description = $request->description;
+        $color->save();
+        return $this->create();
     }
 
     /**
@@ -44,9 +49,11 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Request $request)
     {
-        //
+        $show="%".$request["show"]."%";
+        $color=Color::where('description',"like",$show)->paginate(10);
+        return view('colortable',compact('color'));
     }
 
     /**
@@ -55,9 +62,9 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
-    {
-        //
+    public function edit(Request $request){
+        $color = Color::find($request->id);
+        return $color;
     }
 
     /**
@@ -67,9 +74,12 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request)
     {
-        //
+        $color = Color::find($request->id);
+        $color->description = $request->description;
+        $color->save();
+        return $this->create();
     }
 
     /**
@@ -78,8 +88,9 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Request $request)
     {
-        //
+        Color::find($request->id)->delete();
+        return $this->create();
     }
 }

@@ -39,6 +39,7 @@
     <script src="{{ asset('user.js') }}"></script>
     <script src="{{ asset('role.js') }}"></script>
     <script src="{{ asset('distribution.js') }}"></script>
+    <script src="{{ asset('color.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jQuery -->
@@ -506,6 +507,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('distribuciones.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Distribución Productos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('categorias.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Categorías</p>
@@ -874,7 +881,11 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+    <!--  USO DE DATATABLE PARA GENERAR PDF - CSV  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-html5-1.6.4/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-html5-1.6.4/datatables.min.js"></script>
 
 
     <script>
@@ -884,24 +895,51 @@
             "autoWidth": false,
             "paging": false,
             "searching": false,
-            "ordering": true
+            "ordering": true,
+            dom: 'Bfrtip',
+        buttons: [
+            {
+
+              extend: 'csvHtml5',
+            text: 'CSV',
+            exportOptions: {
+                modifier: {
+                    search: 'none'
+                }
+            }
+
+            },
+            {
+                extend: 'pdfHtml5',
+                download: 'open'
+            },
+            {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        },
+        {
+            extend: 'copyHtml5',
+            text: 'COPIAR DATOS',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        },
+
+
+        ]
+
         });
-        // datatableResponsive();
 
-        function datatableResponsive() {
-
-            $('#example2').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": false,
-            });
-        }
 
     </script>
+
 
 </body>
 

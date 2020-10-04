@@ -1,11 +1,9 @@
 
-
-
-function productStore() {
-    var formData = new FormData(document.getElementById("product"));
+function colorStore() {
+    var formData = new FormData(document.getElementById("color"));
     axios({
             method: 'post',
-            url: 'productStore',
+            url: 'colorStore',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -24,12 +22,12 @@ function productStore() {
 
 }
 
-function productEdit(id) {
-    var formData = new FormData(document.getElementById("product"));
+function colorEdit(id) {
+    var formData = new FormData(document.getElementById("color"));
     formData.append("id",id);
     axios({
             method: 'post',
-            url: 'productEdit',
+            url: 'colorEdit',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -39,9 +37,8 @@ function productEdit(id) {
             //handle success
             var contentdiv = document.getElementById("mycontent");
            // contentdiv.innerHTML = response.data["description"];
-            product.id.value=response.data["id"];
-            product.providers_id.value=response.data["providers_id"];
-            product.description.value=response.data["description"];
+            color.id.value=response.data["id"];
+            color.description.value=response.data["description"];
         })
         .catch(function(response) {
             //handle error
@@ -50,11 +47,11 @@ function productEdit(id) {
 
 }
 
-function productUpdate() {
-    var formData = new FormData(document.getElementById("product"));
+function colorUpdate() {
+    var formData = new FormData(document.getElementById("color"));
     axios({
             method: 'post',
-            url: 'productUpdate',
+            url: 'colorUpdate',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -73,14 +70,14 @@ function productUpdate() {
 
 }
 
-function productDestroy(id) {
+function colorDestroy(id) {
 
 if(confirm("¿Quieres eliminar este registro?")){
-  var formData = new FormData(document.getElementById("product"));
+  var formData = new FormData(document.getElementById("color"));
     formData.append("id",id)
     axios({
             method: 'post',
-            url: 'productDestroy',
+            url: 'colorDestroy',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -99,11 +96,11 @@ if(confirm("¿Quieres eliminar este registro?")){
 }
 }
 
-function productShow() {
+function colorShow() {
     var formData = new FormData(document.getElementById("show"));
     axios({
             method: 'post',
-            url: 'productShow',
+            url: 'colorShow',
             data: formData,
         })
         .then(function(response) {

@@ -31,6 +31,8 @@
                             </form>
 
                             <p></p>
+                             <!-- /.content -->
+                             {{ $category->onEachSide(5)->links() }}
                             <div id="mycontent">
                                 @include("categorytable")
                             </div>
