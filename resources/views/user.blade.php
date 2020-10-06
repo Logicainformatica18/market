@@ -52,13 +52,7 @@
                     <form action="" method="post" role="form" id="user" name="form">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
-                        {{$user}}
-                        Roles :
-                        <select name="role" id="" class="form-control">
-                            @foreach ($roles as $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
+
                         Dni<input name="dni" type="number" class="form-control">
                         Paterno<input name="firstname" type="text" class="form-control">
                         Materno<input name="lastname" type="text" class="form-control">
@@ -152,6 +146,52 @@
         </div>
     </div>
 
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Gestionar Permisos</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form action="" method="post" role="form" id="user_role" name="form">
+                 <input type="hidden" name="id" >
+                 {{ csrf_field() }}
+                 Roles :
+                 <select name="role" id="" class="form-control">
+                     @foreach ($roles as $item)
+                         <option value="{{ $item->name }}">{{ $item->name }}</option>
+                     @endforeach
+                 </select>
+                 <input type="button" value="Agregar" class="btn btn-success" onclick="userRoleStore()"
+                     name="create">
 
+
+                 <div id="mycontent_detail">
+                     @if (isset($user->roles_) == null)
+
+                     @else
+                         @include('user_roletable')
+                     @endif
+
+                 </div>
+
+
+
+         </div>
+         <div class="modal-footer">
+             <input type="button" value="Nuevo" class="btn btn-warning" onclick="New();$('#role')[0].reset();"
+                 name="new">
+
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
 
 @endsection

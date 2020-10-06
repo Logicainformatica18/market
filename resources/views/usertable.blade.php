@@ -56,7 +56,10 @@
                                             </td>
 
                                             <td>
-
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-warning"
+    data-toggle="modal" data-target="#exampleModal2"
+    onclick="userRoleEdit('{{ $users->id }}');  return false">Roles</button>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-success note-icon-pencil"
                                                     data-toggle="modal" data-target="#exampleModal"

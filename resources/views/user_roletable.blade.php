@@ -3,9 +3,7 @@
     <th>Descripción</th>
     <th>Eliminar</th>
     <tbody>
-
-
-        @foreach ($user->roles as $item)
+        @foreach ($user->roles_ as $item)
             <tr>
                 <td>
                     {{ $item->pivot->role_id }}
@@ -15,7 +13,7 @@
                 </td>
                 <td>
                  <!-- Button trigger modal -->
-                <button type="button" onclick="userRoleDestroy('{{ $item->name }}',{{ $item->pivot->user_id }});" class="btn btn-danger">
+                <button type="button" onclick="userRoleDestroy('{{ $item->name }}',{{ $item->pivot->model_id }});" class="btn btn-danger">
                     delete
                 </button>
                 </td>

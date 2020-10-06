@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('inicio', function () {
+    return view('login');
+});
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -63,6 +65,7 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('customerShow',"CustomerController@show");
 
     Route::resource('usuarios', 'UserController');
+    Route::post('userCreate', 'UserController@create');
     Route::post('userStore', 'UserController@store');
     Route::post('userDestroy', 'UserController@destroy');
     Route::post('userEdit', 'UserController@edit');

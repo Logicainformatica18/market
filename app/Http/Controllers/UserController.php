@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('id', 'DESC')->paginate(6);
+        $user = User::orderBy('created_at', 'DESC')->paginate(6);
         $roles = Role::all();
         return view('user', compact('user', 'roles'));
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::orderBy('id', 'DESC')->paginate(6);
+        $user = User::orderBy('created_at', 'DESC')->paginate(6);
         return view('usertable', compact('user'));
     }
 
@@ -64,7 +64,6 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->sex = $request->sex;
             $user->save();
-            $user->assignRole($request->role);
 
         } catch (\Exception $e) {
             // do task when error
@@ -182,6 +181,38 @@ class UserController extends Controller
             $users->photo = $request->photo;
             $users->save();
         }
+    }
+
+    public function userRoleEdit(Request $request)
+    {
+
+        $user = User::find($request->id);
+        return view("user_roletable", compact("user"));
+    }
+    public function userRoleDestroy(Request $request)
+    {
+       // return $request->id;
+        $user=User::find($request->id);
+        try {
+            $user->removeRole($request->role_name);
+        } catch (\Exception $th) {
+            return $th->getMessage();
+        }
+
+        return $this->userRoleTable($request->id);
+    }
+    public function userRoleStore(Request $request)
+    {
+
+        $user = User::find($request->id);
+        $user->assignRole($request->role);
+        return view("user_roletable", compact("user"));
+    }
+    public function userRoleTable($id)
+    {
+
+        $user = User::find($id);
+        return view("user_roletable", compact("user"));
     }
 
 }
