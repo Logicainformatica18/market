@@ -109,7 +109,7 @@ class RolesController extends Controller
     {
 
         $role=Role::find($request->id);
-        $role->revokePermissionTo($request->permission);
+        $role->revokePermissionTo($request->permission_name);
 
         return $this->rolePermissionTable($request->id);
     }

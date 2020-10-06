@@ -52,6 +52,7 @@
                     <form action="" method="post" role="form" id="user" name="form">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
+                        {{$user}}
                         Roles :
                         <select name="role" id="" class="form-control">
                             @foreach ($roles as $item)

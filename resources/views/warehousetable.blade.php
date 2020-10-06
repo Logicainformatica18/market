@@ -11,17 +11,19 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-<table class="table table-responsive  table-striped"id="example1">
+<table class="table table-responsive   table-striped table-bordered"id="example1">
     <thead>
+        <th></th>
         <th>Código</th>
         <th class="sorting_2">Nombre</th>
         <th>Description</th>
-        <th>acciones</th>
+        <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
     </thead>
     <tbody>
 
         @foreach ($warehouse as $warehouses)
             <tr>
+                <td></td>
                 <td>{{ $warehouses->id }}</td>
                 <td>{{ $warehouses->name }}</td>
                 <td>{{ $warehouses->description }} </td>

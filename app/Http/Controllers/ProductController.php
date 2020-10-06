@@ -47,8 +47,9 @@ class ProductController extends Controller
         $product = new Product;
         $product->description = $request->description;
         $product->providers_id = $request->providers_id;
-       $product->save();
-        return $this->create();
+    //   $product->save();
+    return $request->providers_id;
+     //   return $this->create();
     }
 
     /**

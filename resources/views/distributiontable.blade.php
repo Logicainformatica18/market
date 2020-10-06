@@ -15,16 +15,18 @@
                             <!-- DataTables -->
                             <table id="example1" class="table table-bordered table-striped table-responsive">
                                 <thead>
+                                    <th></th>
                                     <th class="sorting">Código</th>
                                     <th class="sorting">Producto</th>
                                     <th class="sorting">Cantidad</th>
                                     <th class="sorting">Almacén</th>
                                     <th class="sorting">Fecha</th>
-                                    <th>Acciones</th>
+                                    <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
                                 </thead>
                                 <tbody>
                                     @foreach ($distribution as $distributions)
                                         <tr>
+                                            <td></td>
                                             <td>{{ $distributions->id }}</td>
                                             <td>{{ $distributions->product->description }}</td>
                                             <td>{{ $distributions->quantity }}</td>

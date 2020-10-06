@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    protected $role_name;
     /**
      * The attributes that are mass assignable.
      *
@@ -42,5 +43,10 @@ class User extends Authenticatable
     {
         //pertenece a muchas roles - agregamos el id de la tabla asociativa - pivot
         return $this->belongsToMany('Spatie\Permission\Models\Role', 'model_has_roles','model_id')->withPivot('model_id','model_type');
+    }
+    public function roles_one()
+    {
+        //pertenece a muchas roles - agregamos el id de la tabla asociativa - pivot
+        return $this->belongsTo('Spatie\Permission\Models\Role', 'model_has_roles','model_id');
     }
 }

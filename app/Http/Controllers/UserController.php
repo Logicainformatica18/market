@@ -9,9 +9,11 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 // con esto le damos roles a los usuarios
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Notifications\Notifiable;
 class UserController extends Controller
 {
+    use Notifiable;
+    use HasRoles;
     /**
      * Display a listing of the resource.
      *
@@ -63,6 +65,7 @@ class UserController extends Controller
             $user->sex = $request->sex;
             $user->save();
             $user->assignRole($request->role);
+
         } catch (\Exception $e) {
             // do task when error
             //   return  $e->getMessage();   // insert query
@@ -92,8 +95,12 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-        $users =  User::find($request["id"]);
-         return $users;
+        $user =  User::find($request["id"]);
+        // foreach ($user->roles_ as $key => $valor) {
+        //     $user->role_name=  $valor->name;
+        // }
+
+            return $user;
     }
 
     /**
@@ -117,6 +124,12 @@ class UserController extends Controller
             $users->cellphone = $request->cellphone;
             $users->email = $request->email;
             $users->sex = $request->sex;
+            // try {
+            //     $users->assignRole($request->role);
+            // } catch (\Exception $e) {
+            //     return $e->getMessage();
+            // }
+
             $users->save();
         } else {
             $table = User::find($request["id"]);

@@ -253,14 +253,7 @@
                     <a href="#" class="d-block">{{ Auth::user()->names }}</a><br>
                     </div>
                     <br>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        {{ __('Cerrar Sesión') }}
-                    </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
 
                 </div>
 
@@ -839,6 +832,22 @@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
+                <div class="user-panel pl-6 mt-3 pb-3 mb-3 d-flex">
+
+
+
+
+                </div>
+                <div class="user-panel pl-5 mt-3 pb-3 mb-3 d-flex">
+
+
+
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        {{ __('Cerrar Sesión') }}
+                    </a>
+
+                </div>
             </div>
             <!-- /.sidebar -->
         </aside>
@@ -882,10 +891,11 @@
     </div>
     <!-- ./wrapper -->
     <!--  USO DE DATATABLE PARA GENERAR PDF - CSV  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-html5-1.6.4/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.css"/>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-html5-1.6.4/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.js"></script>
 
 
     <script>
@@ -896,19 +906,10 @@
             "paging": false,
             "searching": false,
             "ordering": true,
+
             dom: 'Bfrtip',
         buttons: [
-            {
 
-              extend: 'csvHtml5',
-            text: 'CSV',
-            exportOptions: {
-                modifier: {
-                    search: 'none'
-                }
-            }
-
-            },
             {
                 extend: 'pdfHtml5',
                 download: 'open'
@@ -921,19 +922,49 @@
                     page: 'current'
                 }
             }
+        }, {
+
+extend: 'csvHtml5',
+text: 'CSV',
+exportOptions: {
+  modifier: {
+      search: 'none'
+  }
+}
+
+},
+        {
+            extend: 'print',
+            text: 'Imprimir',
+            autoPrint: true
         },
         {
             extend: 'copyHtml5',
-            text: 'COPIAR DATOS',
+            text: 'Copiar Datos',
             exportOptions: {
                 modifier: {
                     page: 'current'
                 }
             }
+        },
+        {
+            extend: 'collection',
+            text: 'Mostrar Campos',
+            buttons: [ 'columnsVisibility' ],
+            visibility: true
         }
 
 
-        ]
+        ] , columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
+        select: {
+         style: 'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 1, 'asc' ]]
 
         });
 

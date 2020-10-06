@@ -62,6 +62,7 @@ function userEdit(id) {
             user.firstname.value = response.data["firstname"];
             user.lastname.value = response.data["lastname"];
             user.names.value = response.data["names"];
+
             if(response.data["photo"]!=null){
 
                 user.fotografia.src ="imageusers/"+ response.data["photo"];
@@ -83,6 +84,10 @@ function userEdit(id) {
          user.month.value  = parseInt(datebirth.substr(5,2)) ;
          user.day.value  = parseInt(datebirth.substr(8,2)) ;
          user.year.value  = parseInt(datebirth.substr(0,4)) ;
+
+         user.role.value=    response.data["roles_"][0]["name"];
+
+
 
         })
         .catch(function(response) {

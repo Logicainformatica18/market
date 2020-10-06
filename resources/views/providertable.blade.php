@@ -13,17 +13,19 @@
                         <div class="card-body">
                             <table class="table table-responsive  table-striped" id="example1">
                                 <thead>
+                                    <th></th>
                                     <th>Código</th>
                                     <th class="sorting">Nombre</th>
                                     <th>Descripción</th>
                                     <th>Celular</th>
-                                    <th>Acciones</th>
+                                    <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
                                 </thead>
 
                                 <tbody>
 
                                     @foreach ($provider as $providers)
                                         <tr>
+                                            <td></td>
                                             <td>{{ $providers->id }}</td>
                                             <td>{{ $providers->name }} </td>
                                             <td>{{ $providers->description }} </td>
