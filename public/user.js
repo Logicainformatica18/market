@@ -12,6 +12,8 @@ function userCreate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
 
         })
         .catch(function(response) {
@@ -34,6 +36,8 @@ function userStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
 
         })
         .catch(function(response) {
@@ -59,6 +63,8 @@ function userDestroy(id) {
                 //handle success
                 var contentdiv = document.getElementById("mycontent");
                 contentdiv.innerHTML = response.data;
+                     //carga pdf- csv - excel
+              datatable_load();
             })
             .catch(function(response) {
                 //handle error
@@ -133,6 +139,8 @@ function userUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -152,6 +160,8 @@ function userShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error

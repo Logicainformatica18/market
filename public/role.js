@@ -13,7 +13,8 @@ function roleStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -61,7 +62,8 @@ function roleUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -87,7 +89,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -107,6 +110,8 @@ function roleShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -129,6 +134,7 @@ function rolePermissionStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent_detail");
             contentdiv.innerHTML = response.data;
+
         })
         .catch(function(response) {
             //handle error

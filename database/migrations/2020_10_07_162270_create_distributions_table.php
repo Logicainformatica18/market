@@ -25,6 +25,7 @@ class CreateDistributionsTable extends Migration
             $table->foreign("warehouses_id")->references("id")->on("warehouses")
             ->onDelete('cascade')
             ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

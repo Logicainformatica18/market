@@ -13,7 +13,8 @@ function categoryStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+  //carga pdf- csv - excel
+  datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -39,6 +40,8 @@ function categoryEdit(id) {
            // contentdiv.innerHTML = response.data["description"];
             category.id.value=response.data["id"];
             category.description.value=response.data["description"];
+            category.detail.value=response.data["detail"];
+
         })
         .catch(function(response) {
             //handle error
@@ -61,6 +64,8 @@ function categoryUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+              //carga pdf- csv - excel
+              datatable_load();
 
         })
         .catch(function(response) {
@@ -87,6 +92,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+              //carga pdf- csv - excel
+              datatable_load();
 
         })
         .catch(function(response) {
@@ -107,6 +114,8 @@ function categoryShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+              //carga pdf- csv - excel
+              datatable_load();
         })
         .catch(function(response) {
             //handle error

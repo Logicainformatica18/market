@@ -7,13 +7,13 @@
                                 <div class="container-fluid">
                                     <div class="row mb-2">
                                         <div class="col-sm-6">
-                                            <h1>Categorías</h1>
+                                            <h1>Medidas</h1>
                                             {{ session('success') }}
                                         </div>
                                         <div class="col-sm-6">
                                             <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                                <li class="breadcrumb-item active">Categorías</li>
+                                                <li class="breadcrumb-item active">Medidas</li>
                                             </ol>
                                         </div>
                                     </div>
@@ -21,20 +21,20 @@
                             </section>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal" onclick="New();$('#category')[0].reset();">
+                                data-target="#exampleModal" onclick="New();$('#size')[0].reset();">
                                 Agregar
                             </button>
                             <p></p>
                             Buscar
                             <form  name="for"id="show">
-                                <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="categoryShow();">
+                                <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="sizeShow();">
                             </form>
 
                             <p></p>
                              <!-- /.content -->
-                             {{-- {{ $category->onEachSide(5)->links() }} --}}
+                             {{-- {{ $size->onEachSide(5)->links() }} --}}
                             <div id="mycontent">
-                                @include("categorytable")
+                                @include("sizetable")
                             </div>
 
 
@@ -50,7 +50,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="" method="post" role="form" id="category" name="form">
+                                            <form action="" method="post" role="form" id="size" name="form">
                                                 <input type="hidden" name="id" id="id">
                                                 {{ csrf_field() }}
                                           Descripción :      <input type="text" name="description" id="description"
@@ -62,11 +62,11 @@
                                         </div>
                                         <div class="modal-footer">
                                             <input type="button" value="Nuevo" class="btn btn-warning"
-                                                onclick="New();$('#category')[0].reset();" name="new">
+                                                onclick="New();$('#size')[0].reset();" name="new">
                                             <input type="button" value="Guardar" class="btn btn-success"id="create"
-                                                onclick="categoryStore()" name="create">
+                                                onclick="sizeStore()" name="create">
                                             <input type="button" value="Modificar" class="btn btn-danger"id="update"
-                                                onclick="categoryUpdate();" name="update">
+                                                onclick="sizeUpdate();" name="update">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cerrar</button>
                                             </form>

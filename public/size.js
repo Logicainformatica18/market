@@ -1,8 +1,9 @@
-function personsStore() {
-    var formData = new FormData(document.getElementById("persons"));
+
+function sizeStore() {
+    var formData = new FormData(document.getElementById("size"));
     axios({
             method: 'post',
-            url: 'personsStore',
+            url: 'sizeStore',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -12,7 +13,8 @@ function personsStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -21,12 +23,12 @@ function personsStore() {
 
 }
 
-function personsEdit(id) {
-    var formData = new FormData(document.getElementById("persons"));
+function sizeEdit(id) {
+    var formData = new FormData(document.getElementById("size"));
     formData.append("id",id);
     axios({
             method: 'post',
-            url: 'personsEdit',
+            url: 'sizeEdit',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -35,11 +37,10 @@ function personsEdit(id) {
         .then(function(response) {
             //handle success
             var contentdiv = document.getElementById("mycontent");
-           // contentdiv.innerHTML = response.data["firtsname"];
-           persons.id.value=response.data["id"];
-            persons.firstname.value=response.data["firtsname"];
-            persons.lastname.value=response.data["lastname"];
-            persons.names.value=response.data["names"];
+           // contentdiv.innerHTML = response.data["description"];
+            size.id.value=response.data["id"];
+            size.description.value=response.data["description"];
+            size.detail.value=response.data["detail"];
         })
         .catch(function(response) {
             //handle error
@@ -48,11 +49,11 @@ function personsEdit(id) {
 
 }
 
-function personsUpdate() {
-    var formData = new FormData(document.getElementById("persons"));
+function sizeUpdate() {
+    var formData = new FormData(document.getElementById("size"));
     axios({
             method: 'post',
-            url: 'personsUpdate',
+            url: 'sizeUpdate',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -62,7 +63,8 @@ function personsUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -71,14 +73,14 @@ function personsUpdate() {
 
 }
 
-function personsDestroy(id) {
+function sizeDestroy(id) {
 
 if(confirm("¿Quieres eliminar este registro?")){
-  var formData = new FormData(document.getElementById("persons"));
+  var formData = new FormData(document.getElementById("size"));
     formData.append("id",id)
     axios({
             method: 'post',
-            url: 'personsDestroy',
+            url: 'sizeDestroy',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -88,11 +90,33 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
             console.log(response);
         });
 }
+}
+
+function sizeShow() {
+    var formData = new FormData(document.getElementById("show"));
+    axios({
+            method: 'post',
+            url: 'sizeShow',
+            data: formData,
+        })
+        .then(function(response) {
+            //handle success
+            var contentdiv = document.getElementById("mycontent");
+            contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
+        })
+        .catch(function(response) {
+            //handle error
+            console.log(response);
+        });
+
 }

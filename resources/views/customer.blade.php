@@ -30,7 +30,7 @@
         <input type="text" name="show" class="form-control" style="width: 50%" onkeydown="customerShow();">
     </form>
     <!-- /.content -->
-    {{ $customer->onEachSide(5)->links() }}
+    {{-- {{ $customer->onEachSide(5)->links() }} --}}
     <p></p>
     <div id="mycontent">
         @include("customertable")
@@ -53,6 +53,7 @@
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
                         Dni : <input type="number" name="dni" id="dni" class="form-control">
+                        Ruc : <input type="number" name="ruc" id="ruc" class="form-control">
                         Apellido Paterno : <input type="text" name="firstname" id="firstname" class="form-control">
                         Apellido Materno : <input type="text" name="lastname" id="lastname" class="form-control">
                         Nombres : <input type="text" name="name" id="name" class="form-control">

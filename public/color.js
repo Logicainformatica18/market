@@ -13,7 +13,8 @@ function colorStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -39,6 +40,7 @@ function colorEdit(id) {
            // contentdiv.innerHTML = response.data["description"];
             color.id.value=response.data["id"];
             color.description.value=response.data["description"];
+            color.detail.value=response.data["detail"];
         })
         .catch(function(response) {
             //handle error
@@ -61,6 +63,8 @@ function colorUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
 
         })
         .catch(function(response) {
@@ -87,6 +91,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
 
         })
         .catch(function(response) {
@@ -107,6 +113,8 @@ function colorShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error

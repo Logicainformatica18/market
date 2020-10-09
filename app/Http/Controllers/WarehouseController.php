@@ -14,7 +14,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouse = Warehouse::orderBy('created_at', 'Desc')->paginate(10);
+        $warehouse = Warehouse::orderBy('id','DESC')->get();
         return view("warehouse", compact("warehouse"));
     }
 
@@ -25,7 +25,7 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        $warehouse = Warehouse::orderBy('created_at', 'Desc')->paginate(10);
+        $warehouse = Warehouse::orderBy('id','DESC')->get();
         return view("warehousetable", compact("warehouse"));
     }
 
@@ -53,7 +53,7 @@ class WarehouseController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $warehouse=Warehouse::where('description',"like",$show)->paginate(6);
+        $warehouse=Warehouse::where('description',"like",$show)->all();
         return view('warehousetable',compact('warehouse'));
     }
 

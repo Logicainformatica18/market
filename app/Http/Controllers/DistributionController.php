@@ -16,7 +16,7 @@ class DistributionController extends Controller
      */
     public function index()
     {
-        $distribution = Distribution::paginate(10);
+        $distribution = Distribution::orderBy('id','DESC')->get();
         $product = Product::all();
         $warehouse = Warehouse::all();
         return view("distribution", compact("distribution",'product','warehouse'));
@@ -29,7 +29,7 @@ class DistributionController extends Controller
      */
     public function create()
     {
-        $distribution = Distribution::paginate(10);
+        $distribution = Distribution::orderBy('id','DESC')->get();
         return view("distributiontable", compact("distribution"));
     }
 
@@ -58,7 +58,7 @@ class DistributionController extends Controller
     public function show(Request $request)
     {
         // $show="%".$request["show"]."%";
-        // $distribution=Product::where('description',"like",$show)->paginate(10);
+        // $distribution=Product::where('description',"like",$show)->all();
         // return view('dis$distributiontable',compact('dis$distribution'));
     }
 

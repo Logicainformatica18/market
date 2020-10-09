@@ -30,7 +30,7 @@
                                 <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="distributionShow();">
                             </form>
    <!-- /.content -->
-   {{ $distribution->onEachSide(5)->links() }}
+   {{-- {{ $distribution->onEachSide(5)->links() }} --}}
                             <p></p>
                             <div id="mycontent">
                                 @include("distributiontable")
@@ -65,6 +65,7 @@
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endforeach
                                                 </select>
+
                                                 <p></p>
                                                 Cantidad :      <input type="text" name="quantity" id="quantity"
                                                     class="form-control">

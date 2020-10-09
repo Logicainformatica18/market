@@ -101,4 +101,18 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('colorUpdate',"ColorController@update");
     Route::post('colorDestroy',"ColorController@destroy");
     Route::post('colorShow',"ColorController@show");
+
+    Route::resource("medidas", 'SizeController');
+    Route::post('sizeStore',"SizeController@store");
+    Route::post('sizeEdit',"SizeController@edit");
+    Route::post('sizeUpdate',"SizeController@update");
+    Route::post('sizeDestroy',"SizeController@destroy");
+    Route::post('sizeShow',"SizeController@show");
+
+    Route::resource("tipos", 'TypeController');
+    Route::post('typeStore',"TypeController@store");
+    Route::post('typeEdit',"TypeController@edit");
+    Route::post('typeUpdate',"TypeController@update");
+    Route::post('typeDestroy',"TypeController@destroy");
+    Route::post('typeShow',"TypeController@show");
 });

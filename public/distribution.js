@@ -13,6 +13,8 @@ function distributionStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+        //carga pdf- csv - excel
+        datatable_load();
 
         })
         .catch(function(response) {
@@ -60,6 +62,8 @@ function distributionUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+              //carga pdf- csv - excel
+              datatable_load();
 
         })
         .catch(function(response) {
@@ -86,6 +90,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+              //carga pdf- csv - excel
+              datatable_load();
 
         })
         .catch(function(response) {
@@ -106,6 +112,8 @@ function distributionShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+            //carga pdf- csv - excel
+            datatable_load();
         })
         .catch(function(response) {
             //handle error

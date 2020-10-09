@@ -14,7 +14,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $color = Color::paginate(10);
+        $color = Color::orderBy('id','DESC')->get();
         return view("color", compact("color"));
     }
 
@@ -25,7 +25,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        $color = Color::paginate(10);
+        $color = Color::orderBy('id','DESC')->get();
         return view("colortable", compact("color"));
     }
 
@@ -39,6 +39,7 @@ class ColorController extends Controller
     {
         $color = new Color;
         $color->description = $request->description;
+        $color->detail = $request->detail;
         $color->save();
         return $this->create();
     }
@@ -52,7 +53,7 @@ class ColorController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $color=Color::where('description',"like",$show)->paginate(10);
+        $color=Color::where('description',"like",$show)->all();
         return view('colortable',compact('color'));
     }
 
@@ -78,6 +79,7 @@ class ColorController extends Controller
     {
         $color = Color::find($request->id);
         $color->description = $request->description;
+        $color->detail = $request->detail;
         $color->save();
         return $this->create();
     }

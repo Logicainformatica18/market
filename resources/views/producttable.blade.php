@@ -16,7 +16,14 @@
         <th></th>
         <th>Código</th>
         <th class="sorting">Descripción</th>
-        <th>Categorias</th>
+        {{-- <th>Categorias</th> --}}
+        <th>Precio 1</th>
+        <th>Precio 2</th>
+        <th>Precio 3</th>
+        <th>Color</th>
+        <th>Medida</th>
+        <th>Tipo (Material)</th>
+        <th>Categoria</th>
         <th>Proveedor</th>
         <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
     </thead>
@@ -29,14 +36,21 @@
                 <td></td>
                 <td>{{ $products->id }}</td>
                 <td>{{ $products->description }} </td>
-                <td>
+                {{-- <td>
                     @foreach ($products->categorys as $item)
                         {{ $item->description }} <b> -</b>
                     @endforeach
-                </td>
+                </td> --}}
+                <td>{{ $products->price1}} </td>
+                <td>{{ $products->price2}} </td>
+                <td>{{ $products->price3}} </td>
+                <td>{{ $products->color->description}} </td>
+                <td>{{ $products->size->description}} </td>
+                <td>{{ $products->type->description}} </td>
+                <td>{{ $products->category->description}} </td>
                 <td>{{ $products->provider->name}} </td>
                 <td>
-                <button type="button" onclick="category_productEdit('{{$products->id }}');category_product.product_id.value='{{$products->id}}'" class="btn btn-warning" data-toggle="modal" data-target="#modal_category_product">Categoria</button>
+                {{-- <button type="button" onclick="category_productEdit('{{$products->id }}');" class="btn btn-warning" data-toggle="modal" data-target="#modal_category_product">Categoria</button> --}}
                     <!-- Button trigger modal -->
                     <button type="button" onclick="productEdit({{ $products->id }});Up();" class="btn btn-success note-icon-pencil"
                         data-toggle="modal" data-target="#exampleModal">

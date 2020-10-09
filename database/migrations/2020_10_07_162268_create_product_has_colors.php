@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryProductsTable extends Migration
+class CreateProductHasColors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateCategoryProductsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('category_products', function (Blueprint $table) {
+        // Schema::create('product_has_colors', function (Blueprint $table) {
         //     $table->bigIncrements('id');
-        //     $table->bigInteger("category_id")->unsigned();
-        //     $table->foreign("category_id")->references("id")->on("categories")
+        //     $table->bigInteger("products_id")->unsigned();
+        //     $table->foreign("products_id")->references("id")->on("products")
         //     ->onDelete('cascade')
         //     ->onUpdate('cascade');
-        //     $table->bigInteger("product_id")->unsigned();
-        //     $table->foreign("product_id")->references("id")->on("products")
+        //     $table->bigInteger("colors_id")->unsigned();
+        //     $table->foreign("colors_id")->references("id")->on("colors")
         //     ->onDelete('cascade')
         //     ->onUpdate('cascade');
+        //     $table->bigInteger('quantity');
         //     $table->timestamps();
         // });
     }
@@ -34,6 +35,6 @@ class CreateCategoryProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_products');
+        Schema::dropIfExists('product_has_colors');
     }
 }

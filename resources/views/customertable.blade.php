@@ -17,7 +17,8 @@
                                 <thead>
                                     <th></th>
                                     <th class="sorting">Código</th>
-                                    <th class="sorting">Dni</th>
+                                    <th class="sorting">Documento Identidad</th>
+                                    <th class="sorting">Ruc</th>
                                     <th class="sorting">Paterno</th>
                                     <th class="sorting">Materno</th>
                                     <th class="sorting">Nombres</th>
@@ -31,6 +32,7 @@
                                             <td></td>
                                             <td>{{ $customers->id }}</td>
                                             <td>{{ $customers->dni }}</td>
+                                            <td>{{ $customers->ruc }}</td>
                                             <td>{{ $customers->firstname }}</td>
                                             <td>{{ $customers->lastname }}</td>
                                             <td>{{ $customers->name }}</td>

@@ -17,8 +17,8 @@ class CreateProvidersTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string("name");
-            $table->string("description");
-            $table->string("cellphone");
+            $table->string("description")->nullable();
+            $table->string("cellphone")->nullable();
             $table->timestamps();
         });
     }

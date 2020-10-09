@@ -33,13 +33,14 @@
     <script src="{{ asset('provider.js') }}"></script>
     <script src="{{ asset('warehouse.js') }}"></script>
     <script src="{{ asset('function.js') }}"></script>
-    <script src="{{ asset('person.js') }}"></script>
     <script src="{{ asset('product.js') }}"></script>
     <script src="{{ asset('customer.js') }}"></script>
     <script src="{{ asset('user.js') }}"></script>
     <script src="{{ asset('role.js') }}"></script>
     <script src="{{ asset('distribution.js') }}"></script>
     <script src="{{ asset('color.js') }}"></script>
+    <script src="{{ asset('size.js') }}"></script>
+    <script src="{{ asset('type.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jQuery -->
@@ -146,16 +147,17 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        @if (Auth::user()->photo=="" && Auth::user()->sex=="M" )
-                    <img src="{{asset('male.png')}}" class="img-circle elevation-2" alt="User Image">
+                        @if (Auth::user()->photo == '' && Auth::user()->sex == 'M')
+                            <img src="{{ asset('male.png') }}" class="img-circle elevation-2" alt="User Image">
                         @elseif (Auth::user()->photo=="" && Auth::user()->sex=="F" )
-                        <img src="{{asset('female.png')}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('female.png') }}" class="img-circle elevation-2" alt="User Image">
                         @else
-                        <img src="{{ asset('imageusers/'.Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{ asset('imageusers/' . Auth::user()->photo) }}" class="img-circle elevation-2"
+                                alt="User Image">
                         @endif
                     </div>
                     <div class="info">
-                    <a href="#" class="d-block">{{ Auth::user()->names }}</a><br>
+                        <a href="#" class="d-block">{{ Auth::user()->names }}</a><br>
                     </div>
                     <br>
 
@@ -438,6 +440,24 @@
                                     <a href="{{ route('clientes.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Clientes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('colores.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Colores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('medidas.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Medidas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('tipos.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tipos</p>
                                     </a>
                                 </li>
                                 {{-- <li class="nav-item">
@@ -796,84 +816,106 @@
     </div>
     <!-- ./wrapper -->
     <!--  USO DE DATATABLE PARA GENERAR PDF - CSV  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.css" />
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/sl-1.3.1/datatables.min.js">
+    </script>
 
 
     <script>
-        $("#example1").DataTable({
-            "info": false,
+ function datatable_load(){
+    $("#example1").DataTable({
+        "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "No se encontró nada, lo siento",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search":"Busqueda avanzada : ",
+            "paginate": {
+        "first":      "Primero",
+        "last":       "Último",
+        "next":       "Siguiente",
+        "previous":   "Anterior"
+    }
+        }
+        ,
+            "info": true,
             "responsive": false,
             "autoWidth": false,
-            "paging": false,
-            "searching": false,
+            "paging": true,
+            "searching": true,
             "ordering": false,
 
             dom: 'Bfrtip',
-        buttons: [
+            buttons: [
 
-            {
-                extend: 'pdfHtml5',
-                download: 'open'
+                {
+                    extend: 'pdfHtml5',
+                    download: 'open'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }, {
+
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    exportOptions: {
+                        modifier: {
+                            search: 'none'
+                        }
+                    }
+
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir',
+                    autoPrint: true
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copiar Datos',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                },
+                {
+                    extend: 'collection',
+                    text: 'Mostrar Campos',
+                    buttons: ['columnsVisibility'],
+                    visibility: true
+                }
+
+
+            ],
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'multi',
+                selector: 'td:first-child'
             },
-            {
-            extend: 'excelHtml5',
-            text: 'Excel',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                }
-            }
-        }, {
-
-extend: 'csvHtml5',
-text: 'CSV',
-exportOptions: {
-  modifier: {
-      search: 'none'
-  }
-}
-
-},
-        {
-            extend: 'print',
-            text: 'Imprimir',
-            autoPrint: true
-        },
-        {
-            extend: 'copyHtml5',
-            text: 'Copiar Datos',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                }
-            }
-        },
-        {
-            extend: 'collection',
-            text: 'Mostrar Campos',
-            buttons: [ 'columnsVisibility' ],
-            visibility: true
-        }
-
-
-        ] , columnDefs: [ {
-            orderable: false,
-            className: 'select-checkbox',
-            targets:   0
-        } ],
-        select: {
-         style: 'multi',
-            selector: 'td:first-child'
-        },
-        order: [[ 1, 'asc' ]]
+            // order: [
+            //     [1, 'asc']
+            // ]
 
         });
-
-
+ }
+ datatable_load();
     </script>
 
 

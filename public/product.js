@@ -15,7 +15,8 @@ function productStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -41,7 +42,14 @@ function productEdit(id) {
            // contentdiv.innerHTML = response.data["description"];
             product.id.value=response.data["id"];
             product.providers_id.value=response.data["providers_id"];
+            product.colors_id.value=response.data["colors_id"];
+            product.types_id.value=response.data["types_id"];
+            product.categories_id.value=response.data["categories_id"];
             product.description.value=response.data["description"];
+            product.detail.value=response.data["detail"];
+            product.price1.value=response.data["price1"];
+            product.price2.value=response.data["price2"];
+            product.price3.value=response.data["price3"];
         })
         .catch(function(response) {
             //handle error
@@ -64,7 +72,8 @@ function productUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -90,7 +99,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -110,6 +120,8 @@ function productShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error

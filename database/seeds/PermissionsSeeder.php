@@ -6,7 +6,6 @@ use Spatie\Permission\Models\Permission;
 //agregar hash
 use Illuminate\Support\Facades\Hash;
 use App\User;
-
 class PermissionsSeeder extends Seeder
 {
     /**
@@ -17,6 +16,7 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
 
-
     }
+
+
 }

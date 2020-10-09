@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::paginate(10);
+        $customer = Customer::orderBy('id','DESC')->get();
         return view("customer", compact("customer"));
     }
 
@@ -25,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customer = Customer::paginate(10);
+        $customer = Customer::orderBy('id','DESC')->get();
         return view("customertable", compact("customer"));
     }
 
@@ -39,6 +39,7 @@ class CustomerController extends Controller
     {
         $customer = new Customer;
         $customer->dni = $request->dni;
+        $customer->ruc = $request->ruc;
         $customer->firstname = $request->firstname;
         $customer->lastname = $request->lastname;
         $customer->name = $request->name;
@@ -57,7 +58,7 @@ class CustomerController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $customer=Customer::where("concat(firstname,' ',lastname,' ',name)","like",$show)->paginate(10);
+        $customer=Customer::where("concat(firstname,' ',lastname,' ',name)","like",$show)->all();
         return view('customertable',compact('customer'));
     }
 
@@ -84,6 +85,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($request->id);
         $customer->dni = $request->dni;
+        $customer->ruc = $request->ruc;
         $customer->firstname = $request->firstname;
         $customer->lastname = $request->lastname;
         $customer->name = $request->name;

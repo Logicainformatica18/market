@@ -13,4 +13,5 @@ class Distribution extends Model
     public function warehouse(){
         return $this->belongsTo('App\Warehouse', 'warehouses_id');
     }
+
 }

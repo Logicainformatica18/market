@@ -32,7 +32,7 @@
 
     <p></p>
     <!-- /.content -->
-    {{ $color->links() }}
+    {{-- {{ $color->links() }} --}}
     <div id="mycontent">
         @include("colortable")
 
@@ -56,7 +56,8 @@
                         {{ csrf_field() }}
                         Descripción : <input type="text" name="description" id="description" class="form-control">
 
-
+                        Detalle :      <input type="text" name="detail" id="detail"
+                        class="form-control">
 
                 </div>
                 <div class="modal-footer">

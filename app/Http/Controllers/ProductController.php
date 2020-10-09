@@ -6,6 +6,9 @@ use App\Category;
 use App\Product;
 use App\Provider;
 use App\Warehouse;
+use App\Size;
+use App\Type;
+use App\Color;
 use App\category_product;
 use Illuminate\Http\Request;
 
@@ -18,10 +21,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::paginate(6);
+        $product = Product::orderBy('id','DESC')->get();
         $category = Category::all();
         $provider = Provider::all();
-        return view("product", compact("product", "category",'provider'));
+        $color = Color::all();
+        $size = Size::all();
+        $type = Type::all();
+        return view("product", compact("product", "category",'provider','type','size','color'));
     }
 
     /**
@@ -31,7 +37,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product = Product::paginate(6);
+        $product = Product::orderBy('id','DESC')->get();
         return view("producttable", compact("product"));
     }
 
@@ -43,12 +49,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+try {
+    $product = new Product;
+    $product->description = $request->description;
+    $product->detail = $request->detail;
+    $product->providers_id = $request->providers_id;
+    $product->colors_id = $request->colors_id;
+    $product->types_id = $request->types_id;
+    $product->categories_id = $request->categories_id;
+    $product->sizes_id = $request->sizes_id;
+    $product->price1 = $request->price1;
+    $product->price2 = $request->price2;
+    $product->price3 = $request->price3;
+   $product->save();
+    return $this->create();
+} catch (\Exception $th) {
+ return    $th->getMessage();
+}
 
-        $product = new Product;
-        $product->description = $request->description;
-        $product->providers_id = $request->providers_id;
-       $product->save();
-        return $this->create();
     }
 
     /**
@@ -60,7 +78,7 @@ class ProductController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $product=Product::where('description',"like",$show)->paginate(6);
+        $product=Product::where('description',"like",$show)->all();
         return view('producttable',compact('product'));
     }
 
@@ -87,7 +105,15 @@ class ProductController extends Controller
     {
         $product = Product::find($request->id);
         $product->description = $request->description;
+        $product->detail = $request->detail;
         $product->providers_id = $request->providers_id;
+        $product->colors_id = $request->colors_id;
+        $product->types_id = $request->types_id;
+        $product->categories_id = $request->categories_id;
+        $product->sizes_id = $request->sizes_id;
+        $product->price1 = $request->price1;
+        $product->price2 = $request->price2;
+        $product->price3 = $request->price3;
         $product->save();
         return $this->create();
     }
@@ -107,25 +133,26 @@ class ProductController extends Controller
 
 
 
-    public function category_productStore(Request $request){
-        $category_product = new category_product();
-        $category_product->category_id = $request->category_id;
-        $category_product->product_id = $request->product_id;
-        $category_product->save();
-        $this->create();
-       return  $this->category_productTable($request->product_id);
-    }
-    public function category_productDestroy(Request $request){
-        category_product::find($request->id)->delete();
-      return  $this->category_productTable($request->product_id);
+    // public function category_productStore(Request $request){
+    //     $category_product = new category_product();
+    //     $category_product->category_id = $request->category_id;
+    //     $category_product->product_id = $request->id;
+    //     $category_product->save();
+    //     $this->create();
+    //    return  $this->category_productTable($request->id);
+    // }
+    // public function category_productDestroy(Request $request){
+    //     category_product::find($request->id)->delete();
+    //   return  $this->category_productTable($request->product_id);
 
-    }
-    public function category_productTable($product_id){
-        $product = Product::find($product_id);
-       return view("category_producttable", compact("product"));
-    }
-    public function category_productEdit(Request $request){
-       $product = Product::find($request->id);
-       return view("category_producttable", compact("product"));
-    }
+    // }
+    // public function category_productTable($product_id){
+    //     $product = Product::find($product_id);
+    //    return view("category_producttable", compact("product"));
+    // }
+    // public function category_productEdit(Request $request){
+
+    //     $product = Product::find($request->id);
+    //    return view("category_producttable", compact("product"));
+    // }
 }

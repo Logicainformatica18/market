@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('created_at', 'DESC')->paginate(6);
+        $user = User::orderBy('id','DESC')->get();
         $roles = Role::all();
         return view('user', compact('user', 'roles'));
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user = User::orderBy('created_at', 'DESC')->paginate(6);
+        $user = User::orderBy('id','DESC')->get();
         return view('usertable', compact('user'));
     }
 
@@ -82,7 +82,7 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $show = "%" . $request["show"] . "%";
-        $user = User::where('firstname', "like", $show)->paginate(6);
+        $user = User::where('firstname', "like", $show)->all();
         return view('usertable', compact('user'));
     }
 

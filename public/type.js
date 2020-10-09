@@ -1,8 +1,9 @@
-function providerStore() {
-    var formData = new FormData(document.getElementById("provider"));
+
+function typeStore() {
+    var formData = new FormData(document.getElementById("type"));
     axios({
             method: 'post',
-            url: 'providerStore',
+            url: 'typeStore',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -12,8 +13,9 @@ function providerStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-     //carga pdf- csv - excel
-     datatable_load();
+                 //carga pdf- csv - excel
+                 datatable_load();
+
         })
         .catch(function(response) {
             //handle error
@@ -22,12 +24,12 @@ function providerStore() {
 
 }
 
-function providerEdit(id) {
-    var formData = new FormData(document.getElementById("provider"));
+function typeEdit(id) {
+    var formData = new FormData(document.getElementById("type"));
     formData.append("id",id);
     axios({
             method: 'post',
-            url: 'providerEdit',
+            url: 'typeEdit',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -37,10 +39,9 @@ function providerEdit(id) {
             //handle success
             var contentdiv = document.getElementById("mycontent");
            // contentdiv.innerHTML = response.data["description"];
-            provider.id.value=response.data["id"];
-            provider.name.value=response.data["name"];
-            provider.description.value=response.data["description"];
-            provider.cellphone.value=response.data["cellphone"];
+            type.id.value=response.data["id"];
+            type.description.value=response.data["description"];
+            type.detail.value=response.data["detail"];
         })
         .catch(function(response) {
             //handle error
@@ -49,11 +50,11 @@ function providerEdit(id) {
 
 }
 
-function providerUpdate() {
-    var formData = new FormData(document.getElementById("provider"));
+function typeUpdate() {
+    var formData = new FormData(document.getElementById("type"));
     axios({
             method: 'post',
-            url: 'providerUpdate',
+            url: 'typeUpdate',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -63,8 +64,9 @@ function providerUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-     //carga pdf- csv - excel
-     datatable_load();
+                 //carga pdf- csv - excel
+                 datatable_load();
+
         })
         .catch(function(response) {
             //handle error
@@ -73,14 +75,14 @@ function providerUpdate() {
 
 }
 
-function providerDestroy(id) {
+function typeDestroy(id) {
 
 if(confirm("¿Quieres eliminar este registro?")){
-  var formData = new FormData(document.getElementById("provider"));
+  var formData = new FormData(document.getElementById("type"));
     formData.append("id",id)
     axios({
             method: 'post',
-            url: 'providerDestroy',
+            url: 'typeDestroy',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -90,8 +92,9 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-     //carga pdf- csv - excel
-     datatable_load();
+                 //carga pdf- csv - excel
+                 datatable_load();
+
         })
         .catch(function(response) {
             //handle error
@@ -99,11 +102,12 @@ if(confirm("¿Quieres eliminar este registro?")){
         });
 }
 }
-function providerShow() {
+
+function typeShow() {
     var formData = new FormData(document.getElementById("show"));
     axios({
             method: 'post',
-            url: 'providerShow',
+            url: 'typeShow',
             data: formData,
         })
         .then(function(response) {

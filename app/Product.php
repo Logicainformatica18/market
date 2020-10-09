@@ -6,21 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['id', 'description','providers_id'];
+    protected $fillable = ['id', 'description','detail','providers_id','colors_id','types_id','categories_id','price1','price2','price3'];
 
-
-    public function categorys()
-    {
-        //pertenece a muchas categorias - agregamos el id de la tabla asociativa - pivot
-        return $this->belongsToMany('App\Category', 'category_products')->withPivot('category_id', 'id');
-    }
     public function provider(){
         return $this->belongsTo('App\Provider', 'providers_id');
     }
 
-    public function colors()
+    public function color()
     {
         //pertenece a muchas - agregamos el id de la tabla asociativa - pivot
-        return $this->belongsToMany('App\Color', 'product_has_colors','products_id')->withPivot('id');
+        return $this->belongsTo('App\Color','colors_id');
+    }
+    public function size(){
+        return $this->belongsTo('App\Size', 'sizes_id');
+    }
+    public function type(){
+        return $this->belongsTo('App\Type', 'types_id');
+    }
+    public function category(){
+        return $this->belongsTo('App\Category', 'categories_id');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Provider;
+use App\Size;
 use Illuminate\Http\Request;
 
-class ProviderController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $provider = Provider::orderBy('id','DESC')->get();
-        return view("provider", compact("provider"));
+        $size = Size::orderBy('id','DESC')->get();
+        return view("size", compact("size"));
     }
 
     /**
@@ -25,8 +25,8 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        $provider = Provider::orderBy('id','DESC')->get();
-        return view("providertable", compact("provider"));
+        $size = Size::orderBy('id','DESC')->get();
+        return view("sizetable", compact("size"));
     }
 
     /**
@@ -37,66 +37,63 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        $provider = new Provider();
-        $provider->name = $request->name;
-        $provider->description = $request->description;
-        $provider->cellphone = $request->cellphone;
-        $provider->save();
+        $size = new Size;
+        $size->description = $request->description;
+        $size->detail = $request->detail;
+        $size->save();
         return $this->create();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Provider  $provider
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $provider=Provider::where('name',"like",$show)->all();
-        return view('providertable',compact('provider'));
+        $size=Size::where('description',"like",$show)->all();
+        return view('sizetable',compact('size'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Provider  $provider
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
     {
-        $provider = Provider::find($request->id);
-        return $provider;
+        $size = Size::find($request->id);
+        return $size;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Provider  $provider
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $provider = Provider::find($request->id);
-
-        $provider->name = $request->name;
-        $provider->description = $request->description;
-        $provider->cellphone = $request->cellphone;
-        $provider->save();
+        $size = Size::find($request->id);
+        $size->description = $request->description;
+        $size->detail = $request->detail;
+        $size->save();
         return $this->create();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Provider  $provider
+     * @param  \App\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-        Provider::find($request->id)->delete();
+        Size::find($request->id)->delete();
         return $this->create();
     }
 }

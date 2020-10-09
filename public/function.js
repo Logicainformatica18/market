@@ -31,84 +31,86 @@ function readImage(input) {
 
 
 
-function category_productStore() {
+// function category_productStore() {
 
 
-     var formData = new FormData(document.getElementById("category_product"));
-    axios({
-               method: 'post',
-               url: 'category_productStore',
-               data:  formData,
-               // headers: {
-               //     'Content-Type': 'multipart/form-data'
-               // }
-           })
-           .then(function(response) {
-               //handle success
-               var contentdiv = document.getElementById("mycontent_category_product");
-               contentdiv.innerHTML = response.data;
+//      var formData = new FormData(document.getElementById("category_product"));
+//     axios({
+//                method: 'post',
+//                url: 'category_productStore',
+//                data:  formData,
+//                headers: {
+//                    'Content-Type': 'multipart/form-data'
+//                }
+//            })
+//            .then(function(response) {
+//                //handle success
+//                var contentdiv = document.getElementById("mycontent_category_product");
+//                contentdiv.innerHTML = response.data;
 
-           })
-           .catch(function(response) {
-               //handle error
-               console.log(response);
-           });
+//            })
+//            .catch(function(response) {
+//                //handle error
+//                console.log(response);
+//            });
 
-   }
-   function category_productEdit(id) {
+//    }
+//    function category_productEdit(id) {
 
-    var formData = new FormData(document.getElementById("category_product"));
-   formData.append("id",id)
+//     var formData = new FormData(document.getElementById("category_product"));
+//    formData.append("id",id)
 
-   axios({
-              method: 'post',
-              url: 'category_productEdit',
-              data:  formData,
-              // headers: {
-              //     'Content-Type': 'multipart/form-data'
-              // }
-          })
-          .then(function(response) {
-              //handle success
-              var contentdiv = document.getElementById("mycontent_category_product");
-              contentdiv.innerHTML = response.data;
-
-          })
-          .catch(function(response) {
-              //handle error
-              console.log(response);
-          });
-    }
-
-function category_productDestroy(id,product_id) {
-
-    if(confirm("¿Quieres eliminar este registro?")){
-   // var formData = new FormData(document.getElementById("category_product"));
-   var formData = new FormData();
-   formData.append("id",id)
-   formData.append("product_id",product_id)
-   axios({
-              method: 'post',
-              url: 'category_productDestroy',
-              data:  formData,
-              // headers: {
-              //     'Content-Type': 'multipart/form-data'
-              // }
-          })
-          .then(function(response) {
-              //handle success
-              var contentdiv = document.getElementById("mycontent_category_product");
-              contentdiv.innerHTML = response.data;
-
-          })
-          .catch(function(response) {
-              //handle error
-              console.log(response);
-          });
-    }
+//    axios({
+//               method: 'post',
+//               url: 'category_productEdit',
+//               data:  formData,
+//               headers: {
+//                   'Content-Type': 'multipart/form-data'
+//               }
+//           })
+//           .then(function(response) {
+//               //handle success
+//               var contentdiv = document.getElementById("mycontent_category_product");
+//               contentdiv.innerHTML = response.data;
+//               document.getElementById("category_product").id.value=id;
 
 
-    }
+//           })
+//           .catch(function(response) {
+//               //handle error
+//               console.log(response);
+//           });
+//     }
+
+// function category_productDestroy(id,product_id) {
+
+//     if(confirm("¿Quieres eliminar este registro?")){
+//    // var formData = new FormData(document.getElementById("category_product"));
+//    var formData = new FormData();
+//    formData.append("id",id)
+//    formData.append("product_id",product_id)
+//    axios({
+//               method: 'post',
+//               url: 'category_productDestroy',
+//               data:  formData,
+//               // headers: {
+//               //     'Content-Type': 'multipart/form-data'
+//               // }
+//           })
+//           .then(function(response) {
+//               //handle success
+//               var contentdiv = document.getElementById("mycontent_category_product");
+//               contentdiv.innerHTML = response.data;
+
+//           })
+//           .catch(function(response) {
+//               //handle error
+//               console.log(response);
+//           });
+//     }
+
+
+//     }
 
 
 

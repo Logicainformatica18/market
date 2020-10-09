@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition login-page" style="background-image: url('https://lh3.googleusercontent.com/proxy/-cX0Ndd0uTjUIkyTHNxVShwkvseL4vWZwwMeSZYFPbew6NT2SsyYskGMe0S3TrhnKd1h3GpkDarGUE21HOBd5OZcFVf_ZwkgkuFIUQAB0pOqTwsR9mksL3pEKbTXlo113NIlfOTNjQKPpOZBhw')">
+<body class="hold-transition login-page" style="background-image: url('https://img.freepik.com/free-vector/retro-abstract-ornamental-flowers-background_23-2148370307.jpg?size=626&ext=jpg')">
     <div class="login-box">
         <div class="login-logo">
             <a href="#" class="text-orange" ><b class="text-white">Sistema</b> Almacen</a>

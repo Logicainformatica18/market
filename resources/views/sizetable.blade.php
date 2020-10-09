@@ -15,27 +15,27 @@
                             <!-- DataTables -->
                             <table id="example1" class="table table-bordered table-striped table-responsive">
                                 <thead>
-                                    <th></th>
+                                    <th ></th>
                                     <th class="sorting">Código</th>
                                     <th class="sorting">Descripción</th>
                                     <th class="sorting">Detalle</th>
                                     <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($color as $colors)
+                                    @foreach ($size as $sizes)
                                         <tr>
                                             <td></td>
-                                            <td>{{ $colors->id }}</td>
-                                            <td>{{ $colors->description }}</td>
-                                            <td>{{ $colors->detail }}</td>
+                                            <td>{{ $sizes->id }}</td>
+                                            <td>{{ $sizes->description }}</td>
+                                            <td>{{ $sizes->detail }}</td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-success note-icon-pencil"
                                                     data-toggle="modal" data-target="#exampleModal"
-                                                    onclick="colorEdit('{{ $colors->id }}'); Up();  return false"></button>
+                                                    onclick="sizeEdit('{{ $sizes->id }}'); Up();  return false"></button>
 
                                                 <!-- <button class="note-icon-pencil" ></button> -->
-                                                <button class="btn btn-danger note-icon-trash" onclick="colorDestroy('{{ $colors->id }}'); return false"></button>
+                                                <button class="btn btn-danger note-icon-trash" onclick="sizeDestroy('{{ $sizes->id }}'); return false"></button>
                                             </td>
 
                                         </tr>

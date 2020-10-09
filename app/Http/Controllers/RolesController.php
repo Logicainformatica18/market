@@ -14,7 +14,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $role= Role::paginate(6);
+        $role= Role::orderBy('id','DESC')->get();
         $permission= Permission::all();
         return view("role", compact("role",'permission'));
     }
@@ -26,7 +26,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $role = Role::paginate(10);
+        $role = Role::orderBy('id','DESC')->get();
         return view("roletable", compact("role"));
     }
 
@@ -56,7 +56,7 @@ class RolesController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $role=Role::where('name',"like",$show)->paginate(6);
+        $role=Role::where('name',"like",$show)->all();
         return view('roletable',compact('role'));
     }
 

@@ -13,7 +13,8 @@ function customerStore() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -39,6 +40,7 @@ function customerEdit(id) {
            // contentdiv.innerHTML = response.data["description"];
             customer.id.value=response.data["id"];
             customer.dni.value=response.data["dni"];
+            customer.ruc.value=response.data["ruc"];
             customer.firstname.value=response.data["firstname"];
             customer.lastname.value=response.data["lastname"];
             customer.name.value=response.data["name"];
@@ -66,6 +68,8 @@ function customerUpdate() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
 
         })
         .catch(function(response) {
@@ -92,7 +96,8 @@ if(confirm("¿Quieres eliminar este registro?")){
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
-
+     //carga pdf- csv - excel
+     datatable_load();
         })
         .catch(function(response) {
             //handle error
@@ -112,6 +117,8 @@ function customerShow() {
             //handle success
             var contentdiv = document.getElementById("mycontent");
             contentdiv.innerHTML = response.data;
+                 //carga pdf- csv - excel
+                 datatable_load();
         })
         .catch(function(response) {
             //handle error

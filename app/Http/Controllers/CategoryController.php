@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $category = Category::paginate(10);
+        $category = Category::orderBy('id','DESC')->get();
         return view("category", compact("category"));
     }
 
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = Category::paginate(10);
+        $category = Category::orderBy('id','DESC')->get();
         return view("categorytable", compact("category"));
     }
 
@@ -41,6 +41,7 @@ class CategoryController extends Controller
         //
         $category = new Category;
         $category->description = $request->description;
+        $category->detail = $request->detail;
         $category->save();
         return $this->create();
     }
@@ -54,7 +55,7 @@ class CategoryController extends Controller
     public function show(Request $request)
     {
         $show="%".$request["show"]."%";
-        $category=Category::where('description',"like",$show)->paginate(10);
+        $category=Category::where('description',"like",$show)->all();
         return view('categorytable',compact('category'));
     }
 
@@ -82,6 +83,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($request->id);
         $category->description = $request->description;
+        $category->detail = $request->detail;
         $category->save();
         return $this->create();
     }

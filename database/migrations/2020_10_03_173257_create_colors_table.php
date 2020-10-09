@@ -14,8 +14,10 @@ class CreateColorsTable extends Migration
     public function up()
     {
         Schema::create('colors', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('description');
+            $table->string('detail')->nullable();
             $table->timestamps();
         });
     }

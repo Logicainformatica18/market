@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('dni',10)->nullable();
+            $table->string('ruc',20)->nullable();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('name');

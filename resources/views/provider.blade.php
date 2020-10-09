@@ -30,7 +30,7 @@
                                 <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="providerShow();">
                             </form>
    <!-- /.content -->
-   {{ $provider->onEachSide(5)->links() }}
+   {{-- {{ $provider->onEachSide(5)->links() }} --}}
                             <p></p>
                             <div id="mycontent">
                                 @include("providertable")
