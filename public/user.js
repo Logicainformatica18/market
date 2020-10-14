@@ -15,6 +15,7 @@ function userCreate() {
                  //carga pdf- csv - excel
                  datatable_load();
 
+
         })
         .catch(function(response) {
             //handle error
@@ -38,7 +39,7 @@ function userStore() {
             contentdiv.innerHTML = response.data;
                  //carga pdf- csv - excel
                  datatable_load();
-
+                 alert('Registrado Correctamente');
         })
         .catch(function(response) {
             //handle error
@@ -65,6 +66,7 @@ function userDestroy(id) {
                 contentdiv.innerHTML = response.data;
                      //carga pdf- csv - excel
               datatable_load();
+              alert('Eliminado Correctamente');
             })
             .catch(function(response) {
                 //handle error
@@ -141,6 +143,7 @@ function userUpdate() {
             contentdiv.innerHTML = response.data;
                  //carga pdf- csv - excel
                  datatable_load();
+                 alert('Modificado Correctamente');
         })
         .catch(function(response) {
             //handle error

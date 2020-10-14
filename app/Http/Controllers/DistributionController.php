@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Distribution;
 use App\Product;
 use App\Warehouse;
+use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 
 class DistributionController extends Controller
@@ -44,8 +45,21 @@ class DistributionController extends Controller
         $distribution = new Distribution();
         $distribution->products_id = substr($request->products_id,strpos($request->products_id,"-")+1,100);
         $distribution->warehouses_id = $request->warehouses_id;
-        $distribution->quantity = $request->quantity;
-        $distribution->save();
+        try {
+            if ($request->state=="input") {
+                $distribution->state = "Ingreso";
+                $distribution->quantity = $request->quantity;
+            }
+            elseif($request->state=="output"){
+                $distribution->state = "Salida";
+                $distribution->quantity =  $request->quantity * -1;
+            }
+
+            $distribution->save();
+        } catch (\Exception $th) {
+            //return $th->getMessage();
+        }
+
         return $this->create();
     }
 
@@ -105,4 +119,9 @@ class DistributionController extends Controller
         Distribution::find($request->id)->delete();
         return $this->create();
     }
+    // public function autocomplete(Request $request){
+    //     $show="%".$request["show"]."%";
+    //     $distribution=Product::where('description',"like",$show)->all();
+    //     return $distribution;
+    // }
 }

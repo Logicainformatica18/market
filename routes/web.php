@@ -95,6 +95,8 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('distributionDestroy',"DistributionController@destroy");
     Route::post('distributionShow',"DistributionController@show");
 
+    Route::resource("distribucionporalmacen", 'DistributionWarehouseController');
+
     Route::resource("colores", 'ColorController');
     Route::post('colorStore',"ColorController@store");
     Route::post('colorEdit',"ColorController@edit");
@@ -115,4 +117,6 @@ Route::group(['middleware' => ['role:administrador|ventas']], function () {
     Route::post('typeUpdate',"TypeController@update");
     Route::post('typeDestroy',"TypeController@destroy");
     Route::post('typeShow',"TypeController@show");
+
+
 });

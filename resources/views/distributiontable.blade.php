@@ -19,19 +19,33 @@
                                     <th class="sorting">Código</th>
                                     <th class="sorting">Producto</th>
                                     <th class="sorting">Cantidad</th>
+                                    <th class="sorting">Estado</th>
                                     <th class="sorting">Almacén</th>
                                     <th class="sorting">Fecha</th>
+                                    <th class="sorting">Hora</th>
                                     <th ><img width="20" src="https://img1.freepng.es/20180622/aac/kisspng-computer-icons-download-share-icon-nut-vector-5b2d36055f5105.9823437615296896053904.jpg" alt="" srcset=""></th>
                                 </thead>
                                 <tbody>
                                     @foreach ($distribution as $distributions)
-                                        <tr>
+                                        @if ($distributions->state=="Salida")
+                                    <?php $color="rgb(255, 180, 195)" ?>
+                                        @else
+                                        <?php $color="white" ?>
+                                        @endif
+                                <tr style="background-color:{{$color}}">
                                             <td></td>
                                             <td>{{ $distributions->id }}</td>
                                             <td>{{ $distributions->product->description }}</td>
                                             <td>{{ $distributions->quantity }}</td>
+                                            <td>{{ $distributions->state }}</td>
                                             <td>{{ $distributions->warehouse->name }}</td>
-                                            <td>{{ $distributions->created_at }}</td>
+
+                                            <?php
+                                            $date = substr($distributions->created_at,0,10);
+                                            $time = substr($distributions->created_at,11,10);
+                                            ?>
+                                               <td>{{ $date }}</td>
+                                               <td>{{ $time }}</td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-success note-icon-pencil"

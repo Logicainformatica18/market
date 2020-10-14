@@ -29,7 +29,10 @@
                                             <td>{{ $providers->id }}</td>
                                             <td>{{ $providers->name }} </td>
                                             <td>{{ $providers->description }} </td>
-                                            <td>{{ $providers->cellphone }} </td>
+                                            <td width="200px">
+                                                <a href="#"onclick="whatsapp('{{ $providers->cellphone }}')">
+                                                <img width="20px"src="https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1-1.png">
+                                                {{ $providers->cellphone }}</a></td>
 
                                             <td>
                                                 <!-- Button trigger modal -->

@@ -15,6 +15,7 @@ function categoryStore() {
             contentdiv.innerHTML = response.data;
   //carga pdf- csv - excel
   datatable_load();
+  alert('Registrado Correctamente');
         })
         .catch(function(response) {
             //handle error
@@ -66,6 +67,7 @@ function categoryUpdate() {
             contentdiv.innerHTML = response.data;
               //carga pdf- csv - excel
               datatable_load();
+              alert('Modificado Correctamente');
 
         })
         .catch(function(response) {
@@ -94,6 +96,7 @@ if(confirm("¿Quieres eliminar este registro?")){
             contentdiv.innerHTML = response.data;
               //carga pdf- csv - excel
               datatable_load();
+              alert('Eliminado Correctamente');
 
         })
         .catch(function(response) {

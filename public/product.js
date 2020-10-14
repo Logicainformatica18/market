@@ -17,6 +17,7 @@ function productStore() {
             contentdiv.innerHTML = response.data;
      //carga pdf- csv - excel
      datatable_load();
+     alert('Registrado Correctamente');
         })
         .catch(function(response) {
             //handle error
@@ -45,6 +46,7 @@ function productEdit(id) {
             product.colors_id.value=response.data["colors_id"];
             product.types_id.value=response.data["types_id"];
             product.categories_id.value=response.data["categories_id"];
+            product.sizes_id.value=response.data["sizes_id"];
             product.description.value=response.data["description"];
             product.detail.value=response.data["detail"];
             product.price1.value=response.data["price1"];
@@ -74,6 +76,7 @@ function productUpdate() {
             contentdiv.innerHTML = response.data;
      //carga pdf- csv - excel
      datatable_load();
+     alert('Modificado Correctamente');
         })
         .catch(function(response) {
             //handle error
@@ -101,6 +104,7 @@ if(confirm("¿Quieres eliminar este registro?")){
             contentdiv.innerHTML = response.data;
      //carga pdf- csv - excel
      datatable_load();
+     alert('Eliminado Correctamente');
         })
         .catch(function(response) {
             //handle error

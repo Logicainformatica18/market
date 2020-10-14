@@ -7,13 +7,13 @@
                                 <div class="container-fluid">
                                     <div class="row mb-2">
                                         <div class="col-sm-6">
-                                            <h1>Almacenes</h1>
+                                            <h1>Distribución por Almacén </h1>
                                             {{ session('success') }}
                                         </div>
                                         <div class="col-sm-6">
                                             <ol class="breadcrumb float-sm-right">
                                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                                <li class="breadcrumb-item active">Almacenes</li>
+                                                <li class="breadcrumb-item active">Distribución por Almacén </li>
                                             </ol>
                                         </div>
                                     </div>
@@ -21,19 +21,31 @@
                             </section>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#exampleModal" onclick="New();$('#warehouse')[0].reset();">
+                                data-target="#exampleModal" onclick="New();$('#distribution')[0].reset();">
                                 Agregar
                             </button>
                             <p></p>
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+                                    Fecha inicio
+                                    <input type="date" name="" id=""class="form-control" value="">
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    Fecha Fin
+                                    <input type="date" name="" id=""class="form-control">
+                                </div>
+                            </div>
+
                             Buscar
                             <form  name="for"id="show">
-                                <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="warehouseShow();">
+                                <input type="text"name="show" class="form-control" style="width: 50%"  onkeydown="distributionShow();">
                             </form>
- <!-- /.content -->
- {{-- {{ $warehouse->onEachSide(5)->links() }} --}}
+   <!-- /.content -->
+   {{-- {{ $distribution->onEachSide(5)->links() }} --}}
                             <p></p>
                             <div id="mycontent">
-                                @include("warehousetable")
+                                @include("distributionwarehousetable")
                             </div>
 
 
@@ -49,23 +61,37 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="" method="post" role="form" id="warehouse" name="form">
+                                            <form action="" method="post" role="form" id="distribution" name="form">
                                                 <input type="hidden" name="id" id="id">
                                                 {{ csrf_field() }}
-                                          Nombre :      <input type="text" name="name" id="name"
-                                                    class="form-control">
-                                                    Descripción :      <input type="text" name="description" id="description"
-                                                    class="form-control">
 
+                                                Almacen
+                                                <select name="warehouses_id" id="warehouses_id" class="form-control">
+                                                    @foreach ($warehouse as $item)
+                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <br>
+                                                <div class="row container">
+                                                    <div class="col">   Ingreso
+                                                        <input type="radio" name="state" value="input" class="form-control">
+                                                    </div>
+                                                    <div class="col">   Egreso
+                                                        <input type="radio" name="state" value="output" class="form-control">
+                                                    </div>
+                                                </div>
 
+                                                <p></p>
+                                                Cantidad :      <input type="number" name="quantity" id="quantity"
+                                                    class="form-control">
                                         </div>
                                         <div class="modal-footer">
                                             <input type="button" value="Nuevo" class="btn btn-warning"
-                                                onclick="New();$('#warehouse')[0].reset();" name="new">
+                                                onclick="New();$('#distribution')[0].reset();" name="new">
                                             <input type="button" value="Guardar" class="btn btn-success"id="create"
-                                                onclick="warehouseStore()" name="create">
+                                                onclick="distributionStore()" name="create">
                                             <input type="button" value="Modificar" class="btn btn-danger"id="update"
-                                                onclick="warehouseUpdate();" name="update">
+                                                onclick="distributionUpdate();" name="update">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cerrar</button>
                                             </form>
@@ -73,6 +99,4 @@
                                     </div>
                                 </div>
                             </div>
-
-
 @endsection

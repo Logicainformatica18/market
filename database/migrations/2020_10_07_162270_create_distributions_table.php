@@ -17,6 +17,7 @@ class CreateDistributionsTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('quantity');
+            $table->string('state',20);
             $table->bigInteger("products_id")->unsigned();
             $table->foreign("products_id")->references("id")->on("products")
             ->onDelete('cascade')
