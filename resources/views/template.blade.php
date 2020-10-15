@@ -856,7 +856,9 @@
 
                 {
                     extend: 'pdfHtml5',
-                    download: 'open'
+                    download: 'open',
+                    orientation: 'landscape',
+                pageSize: 'LEGAL'
                 },
                 {
                     extend: 'excelHtml5',

@@ -52,6 +52,7 @@ class ProductController extends Controller
 try {
     $product = new Product;
     $product->description = $request->description;
+    $product->code_box = $request->code_box;
     $product->detail = $request->detail;
     $product->providers_id = $request->providers_id;
     $product->colors_id = $request->colors_id;
@@ -105,6 +106,7 @@ try {
     {
         $product = Product::find($request->id);
         $product->description = $request->description;
+        $product->code_box = $request->code_box;
         $product->detail = $request->detail;
         $product->providers_id = $request->providers_id;
         $product->colors_id = $request->colors_id;

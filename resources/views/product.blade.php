@@ -87,12 +87,14 @@
                                 <input type="text" name="description" class="form-control">
                                 Detalle
                                 <input type="text" name="detail" class="form-control">
+                                Código de caja
+                                <input type="text" name="code_box" class="form-control">
                                 Precio 1
-                                <input type="number" name="price1" class="form-control">
+                                <input type="number" name="price1" class="form-control" value="0">
                                 Precio 2
-                                <input type="number" name="price2" class="form-control">
+                                <input type="number" name="price2" class="form-control" value="0">
                                 Precio 3
-                                <input type="number" name="price3" class="form-control">
+                                <input type="number" name="price3" class="form-control" value="0">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

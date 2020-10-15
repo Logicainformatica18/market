@@ -48,6 +48,7 @@ function productEdit(id) {
             product.categories_id.value=response.data["categories_id"];
             product.sizes_id.value=response.data["sizes_id"];
             product.description.value=response.data["description"];
+            product.code_box.value=response.data["code_box"];
             product.detail.value=response.data["detail"];
             product.price1.value=response.data["price1"];
             product.price2.value=response.data["price2"];

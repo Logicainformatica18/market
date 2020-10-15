@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             ->onUpdate('cascade');
             $table->string("description");
             $table->string("detail")->nullable();
+            $table->string("code_box")->nullable();
             $table->decimal("price1",20,2);
             $table->decimal("price2",20,2);
             $table->decimal("price3",20,2);

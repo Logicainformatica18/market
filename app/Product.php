@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['id', 'description','detail','providers_id','colors_id','types_id','categories_id','price1','price2','price3'];
+    protected $fillable = ['id', 'description','code_box','detail','providers_id','colors_id','types_id','categories_id','price1','price2','price3'];
 
     public function provider(){
         return $this->belongsTo('App\Provider', 'providers_id');

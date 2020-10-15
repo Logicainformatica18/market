@@ -16,12 +16,14 @@
         <th></th>
         <th>Código</th>
         <th class="sorting">Descripción</th>
+        <th class="sorting">Cod. caja</th>
         {{-- <th>Categorias</th> --}}
         <th>Precio 1</th>
         <th>Precio 2</th>
         <th>Precio 3</th>
         <th>Color</th>
         <th>Medida</th>
+        <th>Medida detalle</th>
         <th>Tipo (Material)</th>
         <th>Categoria</th>
         <th>Proveedor</th>
@@ -36,6 +38,7 @@
                 <td></td>
                 <td>{{ $products->id }}</td>
                 <td>{{ $products->description }} </td>
+                <td>{{ $products->code_box }} </td>
                 {{-- <td>
                     @foreach ($products->categorys as $item)
                         {{ $item->description }} <b> -</b>
@@ -46,6 +49,7 @@
                 <td>{{ $products->price3}} </td>
                 <td>{{ $products->color->description}} </td>
                 <td>{{ $products->size->description}} </td>
+                <td>{{ $products->size->detail}} </td>
                 <td>{{ $products->type->description}} </td>
                 <td>{{ $products->category->description}} </td>
                 <td>{{ $products->provider->name}} </td>
