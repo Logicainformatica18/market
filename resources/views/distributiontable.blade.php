@@ -17,9 +17,15 @@
                                 <thead>
                                     <th></th>
                                     <th class="sorting">Código</th>
+                                    <th class="sorting">Código Caja</th>
                                     <th class="sorting">Producto</th>
-                                    <th class="sorting">Cantidad</th>
+                                    <th class="sorting">Color</th>
+                                    <th class="sorting">Medida</th>
+                                    <th class="sorting">Medida Detalle</th>
+                                    <th class="sorting">Tipo (Material)</th>
+                                    <th class="sorting">Categoría</th>
                                     <th class="sorting">Estado</th>
+                                    <th class="sorting">Cantidad</th>
                                     <th class="sorting">Almacén</th>
                                     <th class="sorting">Fecha</th>
                                     <th class="sorting">Hora</th>
@@ -35,9 +41,15 @@
                                 <tr style="background-color:{{$color}}">
                                             <td></td>
                                             <td>{{ $distributions->id }}</td>
+                                            <td>{{ $distributions->product->code_box }}</td>
                                             <td>{{ $distributions->product->description }}</td>
-                                            <td>{{ $distributions->quantity }}</td>
+                                            <td>{{ $distributions->product->color->description }}</td>
+                                            <td>{{ $distributions->product->size->description }}</td>
+                                            <td>{{ $distributions->product->size->detail }}</td>
+                                            <td>{{ $distributions->product->type->description }}</td>
+                                            <td>{{ $distributions->product->category->description }}</td>
                                             <td>{{ $distributions->state }}</td>
+                                            <td>{{ $distributions->quantity }}</td>
                                             <td>{{ $distributions->warehouse->name }}</td>
 
                                             <?php

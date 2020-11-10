@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->decimal("price1",20,2);
             $table->decimal("price2",20,2);
             $table->decimal("price3",20,2);
+            $table->decimal("cost",20,2);
             $table->bigInteger("sizes_id")->unsigned();
             $table->foreign("sizes_id")->references("id")->on("sizes")
             ->onDelete('cascade')

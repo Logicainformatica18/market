@@ -19,7 +19,7 @@ class DistributionController extends Controller
     {
         $distribution = Distribution::orderBy('id','DESC')->get();
         $product = Product::all();
-        $warehouse = Warehouse::all();
+        $warehouse = Warehouse::orderBy('description','ASC')->get();
         return view("distribution", compact("distribution",'product','warehouse'));
     }
 

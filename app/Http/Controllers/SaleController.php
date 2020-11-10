@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Sale;
 use Illuminate\Http\Request;
-use App\Distribution;
-use App\Warehouse;
-use App\Product;
-use Illuminate\Support\Facades\DB;
-class DistributionWarehouseController extends Controller
+
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +14,7 @@ class DistributionWarehouseController extends Controller
      */
     public function index()
     {
-        $distribution = Distribution::selectRaw('sum(quantity) as total')
-        ->where('state','like','Salida')
-        ->get();
-        $product = Product::orderBy('description','ASC')->get();
-        $warehouse = Warehouse::orderBy('description','ASC')->get();
-        return view("distributionwarehouse", compact("distribution",'product','warehouse'));
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class DistributionWarehouseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sale $sale)
     {
         //
     }
@@ -59,10 +52,10 @@ class DistributionWarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sale $sale)
     {
         //
     }
@@ -71,10 +64,10 @@ class DistributionWarehouseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sale $sale)
     {
         //
     }
@@ -82,10 +75,10 @@ class DistributionWarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sale $sale)
     {
         //
     }

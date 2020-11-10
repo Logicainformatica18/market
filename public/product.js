@@ -53,6 +53,7 @@ function productEdit(id) {
             product.price1.value=response.data["price1"];
             product.price2.value=response.data["price2"];
             product.price3.value=response.data["price3"];
+            product.cost.value=response.data["cost"];
         })
         .catch(function(response) {
             //handle error

@@ -52,14 +52,14 @@
                         <div class="modal-body">
                             <form action="" name="product" id="product">
                                 Proveedor
-                                <select class="form-control" name="providers_id" id="">
+                                <select class="form-control" name="providers_id" >
                                     @foreach ($provider as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                                 <input type="hidden" name="id">
                                 Categoria
-                                <select name="categories_id" id="" class="form-control">
+                                <select name="categories_id"  class="form-control">
                                     @foreach ($category as $item)
                                         <option value="{{ $item->id }}">{{ $item->description }}</option>
                                     @endforeach
@@ -95,6 +95,8 @@
                                 <input type="number" name="price2" class="form-control" value="0">
                                 Precio 3
                                 <input type="number" name="price3" class="form-control" value="0">
+                                Costo
+                                <input type="number" name="cost" class="form-control" value="0">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

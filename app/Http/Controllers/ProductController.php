@@ -22,11 +22,11 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::orderBy('id','DESC')->get();
-        $category = Category::all();
-        $provider = Provider::all();
-        $color = Color::all();
-        $size = Size::all();
-        $type = Type::all();
+        $category = Category::orderBy('description','ASC')->get();
+        $provider = Provider::orderBy('name','ASC')->get();
+        $color = Color::orderBy('description','ASC')->get();
+        $size = Size::orderBy('description','ASC')->get();
+        $type = Type::orderBy('description','ASC')->get();
         return view("product", compact("product", "category",'provider','type','size','color'));
     }
 
@@ -62,6 +62,7 @@ try {
     $product->price1 = $request->price1;
     $product->price2 = $request->price2;
     $product->price3 = $request->price3;
+    $product->cost = $request->cost;
    $product->save();
     return $this->create();
 } catch (\Exception $th) {
@@ -116,6 +117,7 @@ try {
         $product->price1 = $request->price1;
         $product->price2 = $request->price2;
         $product->price3 = $request->price3;
+        $product->cost = $request->cost;
         $product->save();
         return $this->create();
     }

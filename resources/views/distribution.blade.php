@@ -52,17 +52,33 @@
                                             <form action="" method="post" role="form" id="distribution" name="form">
                                                 <input type="hidden" name="id" id="id">
                                                 {{ csrf_field() }}
+                                                Buscar por:
+                                                <div class="row container">
+                                                    <div class="col">   Nombre de Producto
+                                                        <input type="radio" name="searchtype" value="nameproduct" class="form-control" onclick="selectSearchProduct()">
+                                                    </div>
+                                                    <div class="col">   Código de caja
+                                                        <input type="radio" name="searchtype"  value="codebox" class="form-control" onclick="selectSearchType()">
+                                                    </div>
 
-
-                                                Producto :
-
-                                                <div class="autocomplete" style="width:100%;">
-                                                    <input id="criterio2" type="text" name="products_id" placeholder="Ingrese texto" class="form-control" autocomplete="off">
                                                 </div>
+                                                <div id="productname" >
+
+
+                                                    <div class="autocomplete" style="width:100%;">
+                                                        Producto :
+                                                        <input id="criterio2" type="text" name="products_id" placeholder="Ingrese nombre del producto" class="form-control" autocomplete="off">
+                                                    </div>
+                                                </div>
+
+                                                Código de caja
+                                                <input type="number" name="codebox"id="codebox" class="form-control">
+
+
                                                 Almacen
                                                 <select name="warehouses_id" id="warehouses_id" class="form-control">
                                                     @foreach ($warehouse as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                <option value="{{$item->id}}">{{$item->name}} {{$item->description}}</option>
                                                     @endforeach
                                                 </select>
                                                 <br>
@@ -111,7 +127,7 @@
                                         </script>
                                         <?php
                                         echo "<script>";
-                                        echo "countries.push('".$item->description." ".$item->category->description." ".$item->type->description." ".$item->color->description." ".$item->size->description." -".$item->id."');";
+                                        echo "countries.push('".$item->description." ".$item->color->description." ".$item->size->description." ".$item->category->description." ".$item->type->description." -".$item->id."');";
                                         echo "</script>";
 
                                         ?>
